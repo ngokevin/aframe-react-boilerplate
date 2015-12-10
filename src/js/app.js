@@ -1,14 +1,12 @@
-require('@mozvr/aframe-core');
-require('babel-polyfill');
+import '@mozvr/aframe-core';
+import 'babel-polyfill';
+import {Animation, Entity, Scene} from 'aframe-react';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Animation from './components/Animation';
-import Entity from './components/Entity';
-import Scene from './components/Scene';
-import Camera from './components/contrib/Camera';
-import Light from './components/contrib/Light';
-import Sky from './components/contrib/Sky';
+import Camera from './components/Camera';
+import Light from './components/Light';
+import Sky from './components/Sky';
 
 class BoilerplateScene extends React.Component {
   render () {

@@ -1,5 +1,5 @@
+import {Entity} from 'aframe-react';
 import React from 'react';
-import Entity from '../Entity';
 
 export default class Sky extends React.Component {
   render() {
