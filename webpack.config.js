@@ -29,7 +29,7 @@ module.exports = {
     // Bundle will be served at /bundle.js locally.
     filename: 'bundle.js',
     // Bundle will be built at ./src/media/js.
-    path: './src/media/js',
+    path: './build',
     publicPath: '/',
   },
   module: {

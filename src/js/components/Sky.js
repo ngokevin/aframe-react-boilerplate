@@ -6,7 +6,7 @@ export default class Sky extends React.Component {
     return (
       <Entity geometry={{primitive: 'sphere', radius: 5000}}
               material={{color: "#73CFF0", shader: 'flat'}}
-              scale="1 1 -1"></Entity>
+              scale="1 1 -1"/>
     );
   }
 }
