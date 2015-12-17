@@ -1,4 +1,4 @@
-import '@mozvr/aframe-core';
+import 'aframe-core';
 import 'babel-polyfill';
 import {Animation, Entity, Scene} from 'aframe-react';
 import React from 'react';
