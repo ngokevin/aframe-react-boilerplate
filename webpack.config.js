@@ -12,7 +12,7 @@ var JS_LOADERS = [
 ];
 
 var PLUGINS = [];
-if (IS_PRODUCTION && process.env.MKT_ENV !== 'dev') {
+if (IS_PRODUCTION) {
   // Uglify in production, but not -dev.
   PLUGINS.push(
     new webpack.optimize.UglifyJsPlugin({
