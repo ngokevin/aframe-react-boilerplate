@@ -1,3 +1,3 @@
 import {Entity} from 'aframe-react';
 
-export default props => <Entity light={this.props}/>
+export default props => <Entity light={props}/>
