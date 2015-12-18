@@ -13,7 +13,7 @@ var JS_LOADERS = [
 
 var PLUGINS = [];
 if (IS_PRODUCTION) {
-  // Uglify in production, but not -dev.
+  // Uglify in production.
   PLUGINS.push(
     new webpack.optimize.UglifyJsPlugin({
       mangle: {
