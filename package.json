@@ -12,7 +12,7 @@
   "scripts": {
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "python -m SimpleHTTPServer",
+    "serve": "python -m SimpleHTTPServer 5555",
     "serve-js": "webpack-dev-server --content-base src --progress --watch --history-api-fallback --inline --hot"
   },
   "repository": {

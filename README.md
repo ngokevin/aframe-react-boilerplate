@@ -15,4 +15,4 @@ npm run serve-js &
 npm run serve
 ```
 
-Then head over to localhost:8000.
+Then head over to localhost:5555.
