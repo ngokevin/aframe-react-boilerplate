@@ -18,7 +18,8 @@ if (IS_PRODUCTION) {
     new webpack.optimize.UglifyJsPlugin({
       mangle: {
           except: ['$super', '$', 'exports', 'require']
-      }
+      },
+      sourcemap: false
     })
   );
 }
