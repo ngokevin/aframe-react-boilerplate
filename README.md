@@ -16,3 +16,14 @@ npm run serve
 ```
 
 Then head over to localhost:5555.
+
+### Publishing to GitHub Pages
+
+Ready to show off? Run:
+
+```bash
+npm run ghpages
+```
+
+And share your project on the [A-Frame Slack](http://aframevr.slack.com/) and
+[awesome-aframe](https://github.com/aframevr/awesome-aframe).
