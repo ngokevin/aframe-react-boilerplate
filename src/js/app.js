@@ -22,7 +22,7 @@ class BoilerplateScene extends React.Component {
     this.setState({
       color: colors[Math.floor(Math.random() * colors.length)],
     });
-  }
+  };
 
   render () {
     return (
