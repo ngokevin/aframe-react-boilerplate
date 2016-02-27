@@ -38,17 +38,13 @@ module.exports = {
     loaders: [
       {
         // JS.
-        exclude: /(node_modules|bower_components|vr-markup)/,
+        exclude: /(node_modules|bower_components)/,
         loaders: JS_LOADERS,
         test: /\.js$/,
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader?-svgo'
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
+        loader: 'style-loader!css-loader'
       }
     ],
   },

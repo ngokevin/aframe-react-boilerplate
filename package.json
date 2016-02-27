@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Boilerplate for using A-Frame (VR) with React.",
   "dependencies": {
-    "aframe-core": "0.1.3",
+    "aframe": "aframevr/aframe#dev",
     "aframe-react": "^1.1.0",
     "babel-polyfill": "^6.3.14",
     "react": "^0.14.3",
@@ -13,8 +13,6 @@
     "build": "webpack",
     "preghpages": "npm run build && rm -rf gh-pages && cp -r src gh-pages && cp index.html build/bundle.js gh-pages",
     "ghpages": "npm run preghpages && ghpages -p gh-pages",
-    "gh-pages": "npm run ghpages",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "cd src && python -m SimpleHTTPServer 5555",
     "serve-js": "webpack-dev-server --content-base src --progress --watch --history-api-fallback --inline --hot"
   },
@@ -47,7 +45,6 @@
     "babel-runtime": "^6.3.13",
     "css-loader": "^0.23.0",
     "ghpages": "0.0.3",
-    "json-loader": "^0.5.4",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
