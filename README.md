@@ -17,14 +17,15 @@ npm run serve
 
 Then head over to localhost:5555.
 
-### Registering Third-party A-Frame components
+### Registering A-Frame Components
 
 With Webpack's ES6 module syntax:
 
 ```
-import {registerComponent} from 'aframe-core';
-import exampleComponent from 'aframe-example-component';
-registerComponent('example', exampleComponent.component);
+import 'aframe';
+AFRAME.aframeCore.registerComponent('example', {
+  // ...
+});
 ```
 
 ### Publishing to GitHub Pages
