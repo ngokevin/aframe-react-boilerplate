@@ -15,7 +15,7 @@
     "ghpages": "npm run preghpages && ghpages -p gh-pages",
     "gh-pages": "npm run ghpages",
     "serve": "cd src && python -m SimpleHTTPServer 5555",
-    "serve-js": "webpack-dev-server --content-base src --progress --watch --history-api-fallback --inline --hot"
+    "serve-js": "webpack-dev-server --content-base src --progress --watch --history-api-fallback --inline --hot --host 0.0.0.0"
   },
   "repository": {
     "type": "git",
