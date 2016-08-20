@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Boilerplate for using A-Frame (VR) with React.",
   "dependencies": {
-    "aframe": "^0.2.0",
+    "aframe": "^0.3.1",
     "aframe-react": "^1.2.0",
     "babel-polyfill": "^6.3.14",
     "react": "^0.14.3",
