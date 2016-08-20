@@ -14,7 +14,7 @@ npm install
 npm run serve
 ```
 
-Then head over to `http://localhost:8080`.
+Then head over to `http://localhost:9090`.
 
 ### Registering an A-Frame Component
 
