@@ -14,7 +14,8 @@ npm run serve-js &
 npm run serve
 ```
 
-Then head over to localhost:5555.
+This will start a server for the JS bundle at 8080, but head over to
+`http://localhost:5555` to view the served page..
 
 ### Registering an A-Frame Component
 
