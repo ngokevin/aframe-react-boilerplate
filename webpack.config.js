@@ -35,6 +35,9 @@ module.exports = {
     publicPath: '/',
   },
   module: {
+    noParse: [
+      /node_modules\/aframe\/dist\/aframe.js/,
+    ],
     loaders: [
       {
         // JS.
