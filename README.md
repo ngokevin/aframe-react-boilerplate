@@ -1,11 +1,11 @@
 ## aframe-react-boilerplate
 
-An [aframe-react](https://github.com/ngokevin/aframe-react) boilerplate,
-combining [A-Frame](https://aframe.io) with React.
+Boilerplate for building virtual reality experiences with A-Frame and React
+using [aframe-react](https://github.com/ngokevin/aframe-react).
 
-![](https://cloud.githubusercontent.com/assets/674727/11852092/08f52994-a3eb-11e5-86e1-e7b55bbad02b.png)
+![aframe-react-boilerplate](https://cloud.githubusercontent.com/assets/674727/19344103/ccfb503a-90ed-11e6-9147-fef00fb4a342.gif)
 
-### Getting Started
+### Installation
 
 To get started:
 
@@ -15,23 +15,3 @@ npm run serve
 ```
 
 Then head over to `http://localhost:9090`.
-
-### Registering an A-Frame Component
-
-With Webpack's ES6 module syntax:
-
-```
-import 'aframe';
-import 'aframe-example-component';  // Some component on NPM.
-```
-
-### Publishing to GitHub Pages
-
-Ready to show off? Run:
-
-```bash
-npm run ghpages
-```
-
-And share your project on the [A-Frame Slack](http://aframevr.slack.com/) and
-[awesome-aframe](https://github.com/aframevr/awesome-aframe).
