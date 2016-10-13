@@ -1,19 +1,17 @@
 {
   "name": "aframe-react-boilerplate",
-  "version": "1.0.0",
-  "description": "Boilerplate for using A-Frame with React.",
+  "version": "3.0.1",
+  "description": "Boilerplate for building virtual reality experiences with A-Frame and React.",
   "dependencies": {
-    "aframe": "^0.3.1",
-    "aframe-react": "^2.0.0",
-    "babel-polyfill": "^6.3.14",
-    "react": "^0.14.3",
-    "react-dom": "^0.14.3"
+    "aframe": "^0.3.2",
+    "aframe-animation-component": "^3.0.4",
+    "aframe-bmfont-text-component": "^0.1.4",
+    "aframe-react": "^3.0.2",
+    "aframe-text-component": "^0.3.0",
+    "babel-polyfill": "^6.3.14"
   },
   "scripts": {
     "build": "webpack",
-    "preghpages": "npm run build && rm -rf gh-pages && cp -r src gh-pages && cp index.html build/bundle.js gh-pages",
-    "ghpages": "npm run preghpages && ghpages -p gh-pages",
-    "gh-pages": "npm run ghpages",
     "serve": "webpack-dev-server --content-base src --progress --watch --history-api-fallback --inline --hot --host 0.0.0.0 --port 9090"
   },
   "repository": {
@@ -27,6 +25,8 @@
     "boilerplate",
     "a-frame",
     "mozvr",
+    "reactvr",
+    "aframe-react",
     "webvr"
   ],
   "author": "Kevin Ngo <kngo@mozilla.com>",
