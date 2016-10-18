@@ -16,12 +16,12 @@ class VRScene extends React.Component {
     this.state = {color: 'red'};
   }
 
-  changeColor = () => {
+  changeColor() {
     const colors = ['red', 'orange', 'yellow', 'green', 'blue'];
     this.setState({
       color: colors[Math.floor(Math.random() * colors.length)]
     });
-  };
+  }
 
   render () {
     return (
@@ -47,7 +47,7 @@ class VRScene extends React.Component {
           geometry='primitive: box'
           material={{color: this.state.color, opacity: 0.6}}
           position='0 -0.5 -3'
-          onClick={this.changeColor}>
+          onClick={this.changeColor.bind(this)}>
           <Entity
             animation__sca={{property: 'scale', dir: 'alternate', dur: 100, loop: true, to: '2 2 2'}}
             geometry='primitive: box; depth: 0.2; height: 0.2; width: 0.2'
