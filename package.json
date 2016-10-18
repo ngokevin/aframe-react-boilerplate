@@ -6,7 +6,7 @@
     "aframe": "^0.3.2",
     "aframe-animation-component": "^3.0.4",
     "aframe-bmfont-text-component": "^0.1.4",
-    "aframe-react": "^3.0.2",
+    "aframe-react": "^3.2.3",
     "aframe-text-component": "^0.3.0",
     "babel-polyfill": "^6.3.14"
   },

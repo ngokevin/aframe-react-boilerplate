@@ -2,7 +2,7 @@ import 'aframe';
 import 'aframe-animation-component';
 import 'aframe-text-component';
 import 'babel-polyfill';
-import {Animation, Entity, Scene} from 'aframe-react';
+import {Entity, Scene} from 'aframe-react';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
