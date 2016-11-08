@@ -1,0 +1,4 @@
+{
+	"plugins": ["syntax-jsx"],
+  "presets": ["es2015", "react", "babel-preset-stage-0"]
+}
