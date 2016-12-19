@@ -9,6 +9,8 @@ import ReactDOM from 'react-dom';
 import Camera from './components/Camera';
 import Text from './components/Text';
 import Sky from './components/Sky';
+import Cursor from './components/Cursor';
+import ArtObjectContainer from './components/ArtObjectContainer';
 
 class VRScene extends React.Component {
   constructor(props) {
@@ -35,12 +37,9 @@ class VRScene extends React.Component {
       return (
         <Scene>
           <Camera>
-            <a-cursor
-              animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150">
-            </a-cursor>
+            <Cursor color="red" />
           </Camera>
-
-          
+          <ArtObjectContainer vrMode={this.state.vrMode} />
         </Scene>
       );
     } else {
