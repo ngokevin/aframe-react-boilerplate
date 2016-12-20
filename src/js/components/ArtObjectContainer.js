@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import ArtObject from '../components/ArtObject'
 import { circularPositionFromIndex } from '../../utils/calculations'
 import collections from '../../data/collections'
+import Sky from './Sky'
 
 // const styles = require('../../scss/Members.scss')
 const boxSize = 1.75
@@ -14,6 +15,7 @@ class ArtObjectContainer extends Component {
     if (this.props.vrMode) {
       return (
         <Entity>
+          <Sky />
           {artObjects.map(this.renderCollection.bind(this))}
         </Entity>
       )
@@ -30,7 +32,7 @@ class ArtObjectContainer extends Component {
     let position = circularPositionFromIndex(index, boxSize)
 
     return (
-      <ArtObject key={index} id={collection.id} name={collection.title} photoUrl={collection.image_url}
+      <ArtObject key={index} id={collection.id} name={collection.title} photoUrl={collection.thumbnail_url}
               width={boxSize} height={boxSize} depth={boxSize}
               position={position}
               index={index}
