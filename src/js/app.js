@@ -11,6 +11,7 @@ import Text from './components/Text';
 import Sky from './components/Sky';
 import Cursor from './components/Cursor';
 import ArtObjectContainer from './components/ArtObjectContainer';
+import Navigation from './components/Navigation';
 
 class VRScene extends React.Component {
   constructor(props) {
@@ -19,16 +20,16 @@ class VRScene extends React.Component {
     this.changeVRMode = this.changeVRMode.bind(this)
   }
 
-  changeVRMode() {
-      console.log("hello")
-      this.setState({vrMode: true})
-    }
+  onNext() {
+    console.log("on next")
+  }
 
-  changeColor() {
-    const colors = ['red', 'orange', 'yellow', 'green', 'blue'];
-    this.setState({
-      color: colors[Math.floor(Math.random() * colors.length)]
-    });
+  onPrev() {
+    console.log("on prev")
+  }
+  
+  changeVRMode() {
+    this.setState({vrMode: true})
   }
 
   render () {
@@ -36,10 +37,11 @@ class VRScene extends React.Component {
 
       return (
         <Scene>
-          <Sky/>
+          <Sky />
           <Camera>
             <Cursor color="red" />
           </Camera>
+          <Navigation forward={this.onNext} back={this.onPrev} />
           <ArtObjectContainer vrMode={this.state.vrMode} />
         </Scene>
       );
