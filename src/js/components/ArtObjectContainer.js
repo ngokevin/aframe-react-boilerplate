@@ -6,7 +6,7 @@ import collections from '../../data/collections'
 import Sky from './Sky'
 
 // const styles = require('../../scss/Members.scss')
-const boxSize = 1.75
+const boxSize = 1
 
 class ArtObjectContainer extends Component {
   render () {
