@@ -1,4 +1,4 @@
-const radius = 2
+const radius = 4
 const diameter = radius*2
 const circumference = diameter*Math.PI
 

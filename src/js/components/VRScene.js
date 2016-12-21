@@ -18,7 +18,6 @@ let imageArray = ['https://c2.staticflickr.com/2/1700/24413259604_410edeebde_b.j
                     'https://c2.staticflickr.com/8/7348/26737615540_da23843fe8_b.jpg',
                     'https://c1.staticflickr.com/9/8308/29687569852_97f82c0238_b.jpg',
                     'https://c2.staticflickr.com/8/7042/6979883093_04f7667241_b.jpg', 
-                    'https://c2.staticflickr.com/6/5554/30613859743_083e6e97a6_b.jpg',
                     'https://c2.staticflickr.com/8/7568/28735194290_c75d2b0bca_b.jpg',
                     'https://c2.staticflickr.com/2/1669/24141478864_d2c6635538_b.jpg',
                     'https://c2.staticflickr.com/2/1404/5115778927_4c89f683a1_b.jpg',
@@ -29,8 +28,9 @@ let imageArray = ['https://c2.staticflickr.com/2/1700/24413259604_410edeebde_b.j
 class VRScene extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {color: 'red', vrMode: false, assetIndex: 0, selectedImage: imageArray[0]};
+    this.state = {color: 'red', vrMode: false, assetIndex: 0, selectedImage: imageArray[0], artCollectionView: false};
     this.changeVRMode = this.changeVRMode.bind(this)
+    this.onCollection = this.onCollection.bind(this)
   }
 
   onNext() {
@@ -49,6 +49,10 @@ class VRScene extends React.Component {
     this.setState({vrMode: true})
   }
 
+  onCollection() {
+    this.setState({artCollectionView: true})
+  }
+
   render () {
     if (this.state.vrMode) {
 
@@ -59,7 +63,7 @@ class VRScene extends React.Component {
             <Cursor color="red" />
           </Camera>
           <Navigation forward={this.onNext.bind(this)} back={this.onPrev.bind(this)} />
-          <ArtObjectContainer vrMode={this.state.vrMode} />
+          <ArtObjectContainer vrMode={this.state.vrMode} artCollectionView={this.state.artCollectionView} onCollection={this.onCollection} />
         </Scene>
       );
     } else {

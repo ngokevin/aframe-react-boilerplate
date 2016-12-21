@@ -6,16 +6,21 @@ import collections from '../../data/collections'
 import Sky from './Sky'
 
 // const styles = require('../../scss/Members.scss')
-const boxSize = 1
+const boxSize = .75
 
 class ArtObjectContainer extends Component {
   render () {
-    const artObjects = collections[0]['art_objects'].slice(0,6)
+    const artObjects = collections[0]['art_objects']
+    const collection = [collections[0]['primary_object']]
+
     console.log(artObjects)
     if (this.props.vrMode) {
       return (
         <Entity> 
-          {artObjects.map(this.renderCollection.bind(this))}
+          {collection.map(this.renderCollection.bind(this))}
+          { 
+            this.props.artCollectionView ? artObjects.map(this.renderCollection.bind(this)) : ""
+          }
         </Entity>
       )
     } else {
@@ -35,7 +40,8 @@ class ArtObjectContainer extends Component {
               width={boxSize} height={boxSize} depth={boxSize}
               position={position}
               index={index}
-              vrMode={this.props.vrMode} />
+              vrMode={this.props.vrMode}
+              onCollection={this.props.onCollection} />
     )
   }
 }

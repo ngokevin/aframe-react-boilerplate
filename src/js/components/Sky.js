@@ -19,4 +19,3 @@ class Sky extends React.Component {
 }
 
 export default Sky;
-    // const currentImage = imageArray(imageIndex)
