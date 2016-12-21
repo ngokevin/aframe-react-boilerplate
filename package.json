@@ -11,7 +11,12 @@
     "babel-polyfill": "^6.3.14",
     "lodash": "^4.17.2",
     "react": "^15.4.1",
-    "react-dom": "^15.4.1"
+    "react-dom": "^15.4.1",
+    "dotenv": "^2.0.0",
+    "express": "^4.13.4",
+    "webpack": "^1.13.0",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.10.0"
   },
   "scripts": {
     "build": "webpack",
