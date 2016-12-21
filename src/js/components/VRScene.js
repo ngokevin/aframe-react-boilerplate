@@ -22,6 +22,7 @@ class VRScene extends React.Component {
 
   onNext() {
     console.log("on next")
+    
   }
 
   onPrev() {
@@ -31,8 +32,6 @@ class VRScene extends React.Component {
   changeVRMode() {
     this.setState({vrMode: true})
   }
-
-  
 
   render () {
     if (this.state.vrMode) {
