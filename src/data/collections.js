@@ -25,7 +25,7 @@ const collections = [
         "id": 3,
         "title": "Black-Ground Fresco Fragment with Landscape in Tondo",
         "description": null,
-        "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00802701.jpg",
+        "image_url": "https://s3-us-west-1.amazonaws.com/vr-museum-react/images/00050301.jpg",
         "thumbnail_url": "https://s3-us-west-2.amazonaws.com/vr-museum-art-objects/artobject1.jpg",
         "museum": {
           "id": 1,
@@ -46,7 +46,7 @@ const collections = [
         "id": 154,
         "title": "Fragment of a Fresco Panel with a Meal Preparation",
         "description": null,
-        "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00988701.jpg",
+        "image_url": "https://s3-us-west-2.amazonaws.com/vr-museum-art-objects/artobject1.jpg",
         "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00988701.jpg",
         "museum": {
           "id": 1,
