@@ -23,6 +23,8 @@ class Navigation extends React.Component {
 }
 
 function NavLink (props) {
+
+  
   return (
     <Entity id={props.id} 
       onClick={props.onClick} 

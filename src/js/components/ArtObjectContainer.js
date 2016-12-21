@@ -6,16 +6,15 @@ import collections from '../../data/collections'
 import Sky from './Sky'
 
 // const styles = require('../../scss/Members.scss')
-const boxSize = 1.75
+const boxSize = 1
 
 class ArtObjectContainer extends Component {
   render () {
-    const artObjects = collections[0]['art_objects'].slice(0,3)
+    const artObjects = collections[0]['art_objects'].slice(0,6)
     console.log(artObjects)
     if (this.props.vrMode) {
       return (
-        <Entity>
-          <Sky />
+        <Entity> 
           {artObjects.map(this.renderCollection.bind(this))}
         </Entity>
       )
@@ -32,7 +31,7 @@ class ArtObjectContainer extends Component {
     let position = circularPositionFromIndex(index, boxSize)
 
     return (
-      <ArtObject key={index} id={collection.id} name={collection.title} photoUrl={collection.thumbnail_url}
+      <ArtObject key={index} id={collection.id} name={collection.title} photoUrl={collection.image_url}
               width={boxSize} height={boxSize} depth={boxSize}
               position={position}
               index={index}
