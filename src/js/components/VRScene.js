@@ -38,7 +38,7 @@ class VRScene extends React.Component {
 
       return (
         <Scene>
-          <Sky />
+          <Sky assetIndex={this.state.assetIndex}/>
           <Camera>
             <Cursor color="red" />
           </Camera>

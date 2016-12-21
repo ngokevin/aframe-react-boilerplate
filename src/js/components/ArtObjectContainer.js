@@ -15,7 +15,7 @@ class ArtObjectContainer extends Component {
     if (this.props.vrMode) {
       return (
         <Entity>
-          <Sky />
+          
           {artObjects.map(this.renderCollection.bind(this))}
         </Entity>
       )

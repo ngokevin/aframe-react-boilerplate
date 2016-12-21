@@ -18,7 +18,7 @@ class Sky extends React.Component {
       super(props);
       this.state= {
           images: imageArray,
-          selectedImage: imageArray[0]
+          selectedImage: imageArray[this.props.assetIndex]
       }
   }
 
