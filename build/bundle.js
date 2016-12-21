@@ -99268,7 +99268,7 @@
 	    "id": 155,
 	    "title": "Fragment of a Fresco with Nike",
 	    "description": null,
-	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00766301.jpg",
+	    "image_url": "https://s3-us-west-1.amazonaws.com/vr-museum-react/images/00050301.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00766301.jpg",
 	    "museum": {
 	      "id": 1,
@@ -99288,7 +99288,7 @@
 	    "id": 156,
 	    "title": "Fragment of a Yellow Fresco Panel with Muse",
 	    "description": null,
-	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00762501.jpg",
+	    "image_url": "https://s3-us-west-1.amazonaws.com/vr-museum-react/images/00050301.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00762501.jpg",
 	    "museum": {
 	      "id": 1,
@@ -99308,7 +99308,7 @@
 	    "id": 157,
 	    "title": "Fresco Depicting a Woman (Maenad?) Holding a Dish; Peacock and Fruit Below",
 	    "description": null,
-	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/02039801.jpg",
+	    "image_url": "https://s3-us-west-1.amazonaws.com/vr-museum-react/images/00050301.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/02039801.jpg",
 	    "museum": {
 	      "id": 1,
@@ -99328,7 +99328,7 @@
 	    "id": 160,
 	    "title": "Fresco Fragment",
 	    "description": null,
-	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00818801.jpg",
+	    "image_url": "https://s3-us-west-1.amazonaws.com/vr-museum-react/images/00050301.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00818801.jpg",
 	    "museum": {
 	      "id": 1,
@@ -99348,7 +99348,7 @@
 	    "id": 161,
 	    "title": "Fresco Fragment",
 	    "description": null,
-	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00819101.jpg",
+	    "image_url": "https://s3-us-west-1.amazonaws.com/vr-museum-react/images/00050301.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00819101.jpg",
 	    "museum": {
 	      "id": 1,
