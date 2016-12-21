@@ -99228,7 +99228,7 @@
 	    "id": 3,
 	    "title": "Black-Ground Fresco Fragment with Landscape in Tondo",
 	    "description": null,
-	    "image_url": "https://s3-us-west-1.amazonaws.com/vr-museum-react/images/00050301.jpg",
+	    "image_url": "https://res.cloudinary.com/derwsphzd/image/upload/v1482351162/00050301_xzlrnm.jpg",
 	    "thumbnail_url": "https://s3-us-west-2.amazonaws.com/vr-museum-art-objects/artobject1.jpg",
 	    "museum": {
 	      "id": 1,
@@ -99248,7 +99248,7 @@
 	    "id": 154,
 	    "title": "Fragment of a Fresco Panel with a Meal Preparation",
 	    "description": null,
-	    "image_url": "https://s3-us-west-2.amazonaws.com/vr-museum-art-objects/artobject1.jpg",
+	    "image_url": "https://res.cloudinary.com/derwsphzd/image/upload/v1482351162/00050301_xzlrnm.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00988701.jpg",
 	    "museum": {
 	      "id": 1,
@@ -99268,7 +99268,7 @@
 	    "id": 155,
 	    "title": "Fragment of a Fresco with Nike",
 	    "description": null,
-	    "image_url": "https://s3-us-west-1.amazonaws.com/vr-museum-react/images/00050301.jpg",
+	    "image_url": "https://res.cloudinary.com/derwsphzd/image/upload/v1482351162/00050301_xzlrnm.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00766301.jpg",
 	    "museum": {
 	      "id": 1,
@@ -99288,7 +99288,7 @@
 	    "id": 156,
 	    "title": "Fragment of a Yellow Fresco Panel with Muse",
 	    "description": null,
-	    "image_url": "https://s3-us-west-1.amazonaws.com/vr-museum-react/images/00050301.jpg",
+	    "image_url": "https://res.cloudinary.com/derwsphzd/image/upload/v1482351162/00050301_xzlrnm.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00762501.jpg",
 	    "museum": {
 	      "id": 1,
@@ -99308,7 +99308,7 @@
 	    "id": 157,
 	    "title": "Fresco Depicting a Woman (Maenad?) Holding a Dish; Peacock and Fruit Below",
 	    "description": null,
-	    "image_url": "https://s3-us-west-1.amazonaws.com/vr-museum-react/images/00050301.jpg",
+	    "image_url": "https://res.cloudinary.com/derwsphzd/image/upload/v1482351162/00050301_xzlrnm.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/02039801.jpg",
 	    "museum": {
 	      "id": 1,
@@ -99328,7 +99328,7 @@
 	    "id": 160,
 	    "title": "Fresco Fragment",
 	    "description": null,
-	    "image_url": "https://s3-us-west-1.amazonaws.com/vr-museum-react/images/00050301.jpg",
+	    "image_url": "https://res.cloudinary.com/derwsphzd/image/upload/v1482351162/00050301_xzlrnm.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00818801.jpg",
 	    "museum": {
 	      "id": 1,
@@ -99348,7 +99348,7 @@
 	    "id": 161,
 	    "title": "Fresco Fragment",
 	    "description": null,
-	    "image_url": "https://s3-us-west-1.amazonaws.com/vr-museum-react/images/00050301.jpg",
+	    "image_url": "https://res.cloudinary.com/derwsphzd/image/upload/v1482351162/00050301_xzlrnm.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00819101.jpg",
 	    "museum": {
 	      "id": 1,
