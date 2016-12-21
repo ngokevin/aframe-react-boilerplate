@@ -13,16 +13,29 @@ import Cursor from './Cursor';
 import ArtObjectContainer from './ArtObjectContainer';
 import Navigation from './Navigation';
 
+let imageArray = ['https://c2.staticflickr.com/2/1700/24413259604_410edeebde_b.jpg',
+                    'https://c2.staticflickr.com/8/7348/26737615540_da23843fe8_b.jpg',
+                    'https://c1.staticflickr.com/9/8308/29687569852_97f82c0238_b.jpg',
+                    'https://c2.staticflickr.com/8/7042/6979883093_04f7667241_b.jpg', 
+                    'https://c2.staticflickr.com/6/5554/30613859743_083e6e97a6_b.jpg',
+                    'https://c2.staticflickr.com/8/7568/28735194290_c75d2b0bca_b.jpg',
+                    'https://c2.staticflickr.com/2/1669/24141478864_d2c6635538_b.jpg',
+                    'https://c2.staticflickr.com/2/1404/5115778927_4c89f683a1_b.jpg',
+                    'https://c2.staticflickr.com/6/5346/30914508181_e97b577423_b.jpg'
+                    ]
+
+
 class VRScene extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {color: 'red', vrMode: false, assetIndex: 0};
+    this.state = {color: 'red', vrMode: false, assetIndex: 0, selectedImage: imageArray[0]};
     this.changeVRMode = this.changeVRMode.bind(this)
   }
 
   onNext() {
     console.log("on next")
-    this.setState({assetIndex: this.state.assetIndex + 1})
+    let indexIncrement = this.state.assetIndex + 1
+    this.setState({assetIndex: indexIncrement, selectedImage: imageArray[indexIncrement]})
   }
 
   onPrev() {
@@ -38,7 +51,7 @@ class VRScene extends React.Component {
 
       return (
         <Scene>
-          <Sky assetIndex={this.state.assetIndex}/>
+          <Sky selectedImage={this.state.selectedImage}/>
           <Camera>
             <Cursor color="red" />
           </Camera>
