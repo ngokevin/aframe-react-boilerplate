@@ -46,7 +46,7 @@ const collections = [
         "id": 154,
         "title": "Fragment of a Fresco Panel with a Meal Preparation",
         "description": null,
-        "image_url": "https://s3-us-west-2.amazonaws.com/vr-museum-art-objects/artobject1.jpg",
+        "image_url": "https://c2.staticflickr.com/2/1700/24413259604_410edeebde_b.jpg",
         "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00988701.jpg",
         "museum": {
           "id": 1,
