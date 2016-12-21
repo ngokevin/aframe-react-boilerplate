@@ -98781,7 +98781,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var imageArray = ['https://c2.staticflickr.com/2/1700/24413259604_410edeebde_b.jpg', 'http://i.imgur.com/niHC9wI.jpg', 'https://c2.staticflickr.com/8/7348/26737615540_da23843fe8_b.jpg', 'https://c1.staticflickr.com/9/8308/29687569852_97f82c0238_b.jpg', 'https://c2.staticflickr.com/8/7042/6979883093_04f7667241_b.jpg', 'https://c2.staticflickr.com/6/5554/30613859743_083e6e97a6_b.jpg', 'https://c2.staticflickr.com/8/7568/28735194290_c75d2b0bca_b.jpg', 'https://c2.staticflickr.com/2/1669/24141478864_d2c6635538_b.jpg', 'https://c2.staticflickr.com/2/1404/5115778927_4c89f683a1_b.jpg', 'https://c2.staticflickr.com/6/5346/30914508181_e97b577423_b.jpg'];
+	var imageArray = ['https://c2.staticflickr.com/2/1700/24413259604_410edeebde_b.jpg', 'http://i.imgur.com/niHC9wI.jpg', 'https://c2.staticflickr.com/8/7348/26737615540_da23843fe8_b.jpg', 'https://c1.staticflickr.com/9/8308/29687569852_97f82c0238_b.jpg', 'https://c2.staticflickr.com/8/7042/6979883093_04f7667241_b.jpg', 'https://c2.staticflickr.com/8/7568/28735194290_c75d2b0bca_b.jpg', 'https://c2.staticflickr.com/2/1669/24141478864_d2c6635538_b.jpg', 'https://c2.staticflickr.com/2/1404/5115778927_4c89f683a1_b.jpg', 'https://c2.staticflickr.com/6/5346/30914508181_e97b577423_b.jpg'];
 
 	var VRScene = function (_React$Component) {
 	  _inherits(VRScene, _React$Component);
@@ -98791,8 +98791,9 @@
 
 	    var _this = _possibleConstructorReturn(this, (VRScene.__proto__ || Object.getPrototypeOf(VRScene)).call(this, props));
 
-	    _this.state = { color: 'red', vrMode: false, assetIndex: 0, selectedImage: imageArray[0] };
+	    _this.state = { color: 'red', vrMode: false, assetIndex: 0, selectedImage: imageArray[0], artCollectionView: false };
 	    _this.changeVRMode = _this.changeVRMode.bind(_this);
+	    _this.onCollection = _this.onCollection.bind(_this);
 	    return _this;
 	  }
 
@@ -98816,6 +98817,11 @@
 	      this.setState({ vrMode: true });
 	    }
 	  }, {
+	    key: 'onCollection',
+	    value: function onCollection() {
+	      this.setState({ artCollectionView: true });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      if (this.state.vrMode) {
@@ -98830,7 +98836,7 @@
 	            _react2.default.createElement(_Cursor2.default, { color: 'red' })
 	          ),
 	          _react2.default.createElement(_Navigation2.default, { forward: this.onNext.bind(this), back: this.onPrev.bind(this) }),
-	          _react2.default.createElement(_ArtObjectContainer2.default, { vrMode: this.state.vrMode })
+	          _react2.default.createElement(_ArtObjectContainer2.default, { vrMode: this.state.vrMode, artCollectionView: this.state.artCollectionView, onCollection: this.onCollection })
 	        );
 	      } else {
 	        return _react2.default.createElement(
@@ -98961,7 +98967,6 @@
 	}(_react2.default.Component);
 
 	exports.default = Sky;
-	// const currentImage = imageArray(imageIndex)
 
 /***/ },
 /* 489 */
@@ -99038,7 +99043,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	// const styles = require('../../scss/Members.scss')
-	var boxSize = 1;
+	var boxSize = .75;
 
 	var ArtObjectContainer = function (_Component) {
 	  _inherits(ArtObjectContainer, _Component);
@@ -99052,13 +99057,16 @@
 	  _createClass(ArtObjectContainer, [{
 	    key: 'render',
 	    value: function render() {
-	      var artObjects = _collections2.default[0]['art_objects'].slice(0, 6);
+	      var artObjects = _collections2.default[0]['art_objects'];
+	      var collection = [_collections2.default[0]['primary_object']];
+
 	      console.log(artObjects);
 	      if (this.props.vrMode) {
 	        return _react2.default.createElement(
 	          _aframeReact.Entity,
 	          null,
-	          artObjects.map(this.renderCollection.bind(this))
+	          collection.map(this.renderCollection.bind(this)),
+	          this.props.artCollectionView ? artObjects.map(this.renderCollection.bind(this)) : ""
 	        );
 	      } else {
 	        return _react2.default.createElement(
@@ -99077,7 +99085,8 @@
 	        width: boxSize, height: boxSize, depth: boxSize,
 	        position: position,
 	        index: index,
-	        vrMode: this.props.vrMode });
+	        vrMode: this.props.vrMode,
+	        onCollection: this.props.onCollection });
 	    }
 	  }]);
 
@@ -99146,7 +99155,8 @@
 
 	        return _react2.default.createElement(_aframeReact.Entity, { geometry: { 'primitive': 'box', width: width, height: height, depth: depth },
 	          material: { src: 'url(' + photoUrl + ')', color: color },
-	          position: x + ' ' + y + ' ' + z });
+	          position: x + ' ' + y + ' ' + z,
+	          onClick: this.props.onCollection });
 	      } else {
 
 	        return _react2.default.createElement(
@@ -99175,7 +99185,7 @@
 	  value: true
 	});
 	exports.circularPositionFromIndex = circularPositionFromIndex;
-	var radius = 2;
+	var radius = 4;
 	var diameter = radius * 2;
 	var circumference = diameter * Math.PI;
 
@@ -99749,15 +99759,6 @@
 	}
 
 	exports.default = Navigation;
-
-	// export default props => (
-	//   <Entity
-	//     geometry={{arc: 180, primitive: 'torus', radius: 0.5, radiusTubular: 0.05,
-	//                segmentsTubular: 60}}
-	//     material={{color: '#FFF', shader: 'flat', transparent: true}}
-	//     rotation="90,0,0"
-	//     position="0 -1.8 0"/>
-	// );
 
 /***/ }
 /******/ ]);
