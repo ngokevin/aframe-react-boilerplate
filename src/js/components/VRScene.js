@@ -40,6 +40,8 @@ class VRScene extends React.Component {
 
   onPrev() {
     console.log("on prev")
+    let indexIncrement = this.state.assetIndex - 1
+    this.setState({assetIndex: indexIncrement, selectedImage: imageArray[indexIncrement]})
   }
   
   changeVRMode() {
@@ -55,7 +57,7 @@ class VRScene extends React.Component {
           <Camera>
             <Cursor color="red" />
           </Camera>
-          <Navigation forward={this.onNext.bind(this)} back={this.onPrev} />
+          <Navigation forward={this.onNext.bind(this)} back={this.onPrev.bind(this)} />
           <ArtObjectContainer vrMode={this.state.vrMode} />
         </Scene>
       );
