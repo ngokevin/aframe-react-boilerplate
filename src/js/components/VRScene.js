@@ -16,13 +16,13 @@ import Navigation from './Navigation';
 class VRScene extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {color: 'red', vrMode: false};
+    this.state = {color: 'red', vrMode: false, assetIndex: 0};
     this.changeVRMode = this.changeVRMode.bind(this)
   }
 
   onNext() {
     console.log("on next")
-    
+    this.setState({assetIndex: this.state.assetIndex + 1})
   }
 
   onPrev() {
@@ -42,7 +42,7 @@ class VRScene extends React.Component {
           <Camera>
             <Cursor color="red" />
           </Camera>
-          <Navigation forward={this.onNext} back={this.onPrev} />
+          <Navigation forward={this.onNext.bind(this)} back={this.onPrev} />
           <ArtObjectContainer vrMode={this.state.vrMode} />
         </Scene>
       );
