@@ -1,5 +1,6 @@
 import {Entity} from 'aframe-react';
 import React from 'react';
+// import CursorAnimation from './CursorAnimation'
 
 export default props => {
   const geometry = {
@@ -13,8 +14,10 @@ export default props => {
     opacity: props.opacity || 0.9,
     transparent: true
   };
+  console.log(props)
   return (
-    <Entity cursor={props} geometry={geometry} material={material}
-            position="0 0 -1"/>
-  );
+    <Entity cursor={{'color': props.color, 'fuse':true, 'fuseTimeout': 1500}} geometry={geometry} material={material}
+            position="0 0 -1"/>    
+);
 }
+ 

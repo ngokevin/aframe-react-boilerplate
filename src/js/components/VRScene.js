@@ -10,6 +10,7 @@ import Camera from './Camera';
 import Text from './Text';
 import Sky from './Sky';
 import Cursor from './Cursor';
+import Animation from './Animation';
 import ArtObjectContainer from './ArtObjectContainer';
 import Navigation from './Navigation';
 
@@ -29,7 +30,9 @@ class VRScene extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      color: 'red', 
+      color: 'red',
+      // fuse: true,
+      // fuseTimeout: 1500, 
       vrMode: false, 
       assetIndex: 0, 
       selectedImage: imageArray[0], 
@@ -37,7 +40,7 @@ class VRScene extends React.Component {
       artObjectIndex: 0,
       showAllCollections: true,
       artOnly: false,
-      currentArtObject: null
+      currentArtObject: null,
     };
     this.changeVRMode = this.changeVRMode.bind(this)
     this.onCollection = this.onCollection.bind(this)
