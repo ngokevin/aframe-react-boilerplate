@@ -12,12 +12,13 @@ import Sky from './Sky';
 import Cursor from './Cursor';
 import ArtObjectContainer from './ArtObjectContainer';
 import Navigation from './Navigation';
+import axios from 'axios'
 
 let imageArray = ['https://c2.staticflickr.com/2/1700/24413259604_410edeebde_b.jpg',
                     'http://i.imgur.com/niHC9wI.jpg',
                     'https://c2.staticflickr.com/8/7348/26737615540_da23843fe8_b.jpg',
                     'https://c1.staticflickr.com/9/8308/29687569852_97f82c0238_b.jpg',
-                    'https://c2.staticflickr.com/8/7042/6979883093_04f7667241_b.jpg', 
+                    'https://c2.staticflickr.com/8/7042/6979883093_04f7667241_b.jpg',
                     'https://c2.staticflickr.com/8/7568/28735194290_c75d2b0bca_b.jpg',
                     'https://c2.staticflickr.com/2/1669/24141478864_d2c6635538_b.jpg',
                     'https://c2.staticflickr.com/2/1404/5115778927_4c89f683a1_b.jpg',
@@ -29,21 +30,30 @@ class VRScene extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      color: 'red', 
-      vrMode: false, 
-      assetIndex: 0, 
-      selectedImage: imageArray[0], 
+      color: 'red',
+      vrMode: false,
+      assetIndex: 0,
+      selectedImage: imageArray[0],
       artCollectionView: false,
       artObjectIndex: 0,
       showAllCollections: true,
       artOnly: false,
-      currentArtObject: null
+      currentArtObject: null,
+      collections: [],
     };
     this.changeVRMode = this.changeVRMode.bind(this)
     this.onCollection = this.onCollection.bind(this)
     this.onArtObject = this.onArtObject.bind(this)
     this.goBack = this.goBack.bind(this)
   }
+   componentWillMount() {
+     axios.get(`https://vr-museum-api.herokuapp.com/v1/users/${this.props.params.userId}/collections?vr_mode=true`).then(function (response) {
+        console.log(this);
+        this.setState({
+          collections: response.data
+        })
+      }.bind(this))
+   }
 
   onNext() {
     console.log("on next")
@@ -56,7 +66,7 @@ class VRScene extends React.Component {
     let indexIncrement = this.state.assetIndex - 1
     this.setState({assetIndex: indexIncrement, selectedImage: imageArray[indexIncrement]})
   }
-  
+
   changeVRMode() {
     this.setState({vrMode: true})
   }
@@ -69,12 +79,12 @@ class VRScene extends React.Component {
     this.setState({artObjectIndex: artObjectIndex})
     if (this.state.artCollectionView == false)
       this.setState({
-        artCollectionView: true, 
+        artCollectionView: true,
         showAllCollections: false
       })
-    else 
+    else
       this.setState({
-        artCollectionView: false, 
+        artCollectionView: false,
         showAllCollections: true
       })
   }
@@ -99,19 +109,20 @@ class VRScene extends React.Component {
           <Camera>
             <Cursor color="red" />
           </Camera>
-          <Navigation 
-            forward={this.onNext.bind(this)} 
+          <Navigation
+            forward={this.onNext.bind(this)}
             back={this.onPrev.bind(this)}
             exit={this.exitVRMode.bind(this)} />
-          <ArtObjectContainer 
+          <ArtObjectContainer
             showAllCollections={this.state.showAllCollections}
-            artObjectIndex={this.state.artObjectIndex} 
-            vrMode={this.state.vrMode} 
-            artCollectionView={this.state.artCollectionView} 
+            artObjectIndex={this.state.artObjectIndex}
+            vrMode={this.state.vrMode}
+            artCollectionView={this.state.artCollectionView}
             artOnly={this.state.artOnly}
             onCollection={this.onCollection}
             onArtObject ={this.onArtObject}
-            currentArtObject={this.state.currentArtObject} />
+            currentArtObject={this.state.currentArtObject}
+            vrCollections={this.state.collections}/>
         </Scene>
       );
     } else {
