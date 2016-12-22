@@ -38,7 +38,8 @@ class VRScene extends React.Component {
       artObjectIndex: 0,
       showAllCollections: true,
       artOnly: false,
-      currentArtObject: null
+      currentArtObject: null,
+      collections: [],
     };
     this.changeVRMode = this.changeVRMode.bind(this)
     this.onCollection = this.onCollection.bind(this)
@@ -47,9 +48,11 @@ class VRScene extends React.Component {
   }
    componentWillMount() {
      axios.get(`https://vr-museum-api.herokuapp.com/v1/users/${this.props.params.userId}/collections?vr_mode=true`).then(function (response) {
-        console.log(response);
-        debugger;
-      })
+        console.log(this);
+        this.setState({
+          collections: response.data
+        })
+      }.bind(this))
    }
 
   onNext() {
@@ -118,7 +121,8 @@ class VRScene extends React.Component {
             artOnly={this.state.artOnly}
             onCollection={this.onCollection}
             onArtObject ={this.onArtObject}
-            currentArtObject={this.state.currentArtObject} />
+            currentArtObject={this.state.currentArtObject}
+            vrCollections={this.state.collections}/>
         </Scene>
       );
     } else {
