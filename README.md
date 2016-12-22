@@ -1,4 +1,4 @@
-## aframe-react-boilerplate
+## vMUSE
 
 Boilerplate for building virtual reality experiences with
 [A-Frame](https://aframe.io) and React using
