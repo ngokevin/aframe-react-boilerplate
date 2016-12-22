@@ -1,6 +1,6 @@
 import {Entity} from 'aframe-react'
 import React, {Component} from 'react'
-import ArtObject from '../components/ArtObject'
+import ArtObject from './ArtObject'
 import { circularPositionFromIndex } from '../../utils/calculations'
 import collections from '../../data/collections'
 import Sky from './Sky'
@@ -11,15 +11,15 @@ const boxSize = .75
 class ArtObjectContainer extends Component {
   render () {
     const artObjects = collections[0]['art_objects']
-    const collection = [collections[0]['primary_object']]
+    const collectionArray = collections
 
     console.log(artObjects)
     if (this.props.vrMode) {
       return (
         <Entity> 
-          {collection.map(this.renderCollection.bind(this))}
+          {collectionArray.map(this.renderCollection.bind(this))}
           { 
-            this.props.artCollectionView ? artObjects.map(this.renderCollection.bind(this)) : ""
+            this.props.artCollectionView ? artObjects.map(this.renderArtObjects.bind(this)) : ""
           }
         </Entity>
       )
@@ -32,11 +32,25 @@ class ArtObjectContainer extends Component {
     }
   }
 
-  renderCollection (collection, index) {
+  renderArtObjects (c, index) {
     let position = circularPositionFromIndex(index, boxSize)
 
     return (
-      <ArtObject key={index} id={collection.id} name={collection.title} photoUrl={collection.image_url}
+      <ArtObject key={index} id={c.id} name={c.title} photoUrl={c.vr_url}
+              width={boxSize} height={boxSize} depth={boxSize}
+              position={position}
+              index={index}
+              vrMode={this.props.vrMode}
+              onCollection={this.props.onCollection} />
+    )
+  }
+
+  renderCollection (primary_collection, index) {
+    let position = circularPositionFromIndex(index, boxSize)
+    let collection = primary_collection['primary_object']
+
+    return (
+      <ArtObject key={index} id={collection.id} name={collection.title} photoUrl={collection.vr_url}
               width={boxSize} height={boxSize} depth={boxSize}
               position={position}
               index={index}

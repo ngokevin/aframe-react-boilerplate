@@ -2,6 +2,7 @@ import {Entity} from 'aframe-react';
 import React from 'react';
 
 
+
 class Navigation extends React.Component {
 
   constructor(props, context) {

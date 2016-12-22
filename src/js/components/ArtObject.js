@@ -15,7 +15,6 @@ class ArtObject extends Component {
                 material={{src: `url(${photoUrl})`, color}}
                 position={`${x} ${y} ${z}`}
                 onClick={this.props.onCollection}/>
-
       )
 
     } else {
