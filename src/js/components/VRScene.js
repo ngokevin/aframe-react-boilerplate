@@ -12,7 +12,6 @@ import Sky from './Sky';
 import Cursor from './Cursor';
 import ArtObjectContainer from './ArtObjectContainer';
 import Navigation from './Navigation';
-// import BackButton from './BackButton';
 
 let imageArray = ['https://c2.staticflickr.com/2/1700/24413259604_410edeebde_b.jpg',
                     'http://i.imgur.com/niHC9wI.jpg',
@@ -29,9 +28,20 @@ let imageArray = ['https://c2.staticflickr.com/2/1700/24413259604_410edeebde_b.j
 class VRScene extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {color: 'red', vrMode: false, assetIndex: 0, selectedImage: imageArray[0], artCollectionView: false};
+    this.state = {
+      color: 'red', 
+      vrMode: false, 
+      assetIndex: 0, 
+      selectedImage: imageArray[0], 
+      artCollectionView: false,
+      artObjectIndex: 0,
+      showAllCollections: true,
+      artOnly: false,
+      currentArtObject: null
+    };
     this.changeVRMode = this.changeVRMode.bind(this)
     this.onCollection = this.onCollection.bind(this)
+    this.onArtObject = this.onArtObject.bind(this)
     this.goBack = this.goBack.bind(this)
   }
 
@@ -51,11 +61,29 @@ class VRScene extends React.Component {
     this.setState({vrMode: true})
   }
 
-  onCollection() {
+  exitVRMode() {
+    this.setState({vrMode: false})
+  }
+
+  onCollection(artObjectIndex) {
+    this.setState({artObjectIndex: artObjectIndex})
     if (this.state.artCollectionView == false)
-      this.setState({artCollectionView: true})
+      this.setState({
+        artCollectionView: true, 
+        showAllCollections: false
+      })
     else 
-      this.setState({artCollectionView: false})
+      this.setState({
+        artCollectionView: false, 
+        showAllCollections: true
+      })
+  }
+
+  onArtObject(objectIndex){
+    console.log("art click", objectIndex)
+    this.setState({
+      artOnly: true,
+      currentArtObject: objectIndex})
   }
 
   goBack() {
@@ -71,8 +99,19 @@ class VRScene extends React.Component {
           <Camera>
             <Cursor color="red" />
           </Camera>
-          <Navigation forward={this.onNext.bind(this)} back={this.onPrev.bind(this)} />
-          <ArtObjectContainer vrMode={this.state.vrMode} artCollectionView={this.state.artCollectionView} onCollection={this.onCollection} />
+          <Navigation 
+            forward={this.onNext.bind(this)} 
+            back={this.onPrev.bind(this)}
+            exit={this.exitVRMode.bind(this)} />
+          <ArtObjectContainer 
+            showAllCollections={this.state.showAllCollections}
+            artObjectIndex={this.state.artObjectIndex} 
+            vrMode={this.state.vrMode} 
+            artCollectionView={this.state.artCollectionView} 
+            artOnly={this.state.artOnly}
+            onCollection={this.onCollection}
+            onArtObject ={this.onArtObject}
+            currentArtObject={this.state.currentArtObject} />
         </Scene>
       );
     } else {

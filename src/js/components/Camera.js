@@ -3,6 +3,6 @@ import React from 'react';
 
 export default props => (
   <Entity>
-    <Entity camera="" look-controls="" wasd-controls="" {...props}/>
+    <Entity position="0 0 1" rotation="0 180 0" camera="" look-controls="" wasd-controls="" {...props}/>
   </Entity>
 );
