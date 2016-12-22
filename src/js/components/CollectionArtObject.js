@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Entity} from 'aframe-react'
 
-class ArtObject extends Component {
+class CollectionArtObject extends Component {
   render () {
     const { id, name, photoUrl } = this.props
 
@@ -14,7 +14,7 @@ class ArtObject extends Component {
         <Entity geometry={{'primitive': 'box', width: width, height: height, depth: depth}}
                 material={{src: `url(${photoUrl})`, color}}
                 position={`${x} ${y} ${z}`}
-                />
+                onClick={this.props.onCollection.bind(null, this.props.artObjectIndex)}/>
       )
 
     } else {
@@ -29,4 +29,4 @@ class ArtObject extends Component {
   }
 }
 
-export default ArtObject;
+export default CollectionArtObject;

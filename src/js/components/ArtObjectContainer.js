@@ -4,13 +4,15 @@ import ArtObject from './ArtObject'
 import { circularPositionFromIndex } from '../../utils/calculations'
 import collections from '../../data/collections'
 import Sky from './Sky'
+import CollectionArtObject from './CollectionArtObject'
 
 // const styles = require('../../scss/Members.scss')
-const boxSize = .75
+let collectionBoxSize = 1
+const artBoxSize = .75
 
 class ArtObjectContainer extends Component {
   render () {
-    const artObjects = collections[0]['art_objects']
+    const artObjects = collections[this.props.artObjectIndex]['art_objects']
     const collectionArray = collections
 
     console.log(artObjects)
@@ -18,6 +20,7 @@ class ArtObjectContainer extends Component {
       return (
         <Entity> 
           {collectionArray.map(this.renderCollection.bind(this))}
+
           { 
             this.props.artCollectionView ? artObjects.map(this.renderArtObjects.bind(this)) : ""
           }
@@ -33,29 +36,36 @@ class ArtObjectContainer extends Component {
   }
 
   renderArtObjects (c, index) {
-    let position = circularPositionFromIndex(index, boxSize)
+    let position = circularPositionFromIndex(index, artBoxSize)
 
     return (
       <ArtObject key={index} id={c.id} name={c.title} photoUrl={c.vr_url}
-              width={boxSize} height={boxSize} depth={boxSize}
+              width={artBoxSize} height={artBoxSize} depth={artBoxSize}
               position={position}
               index={index}
               vrMode={this.props.vrMode}
-              onCollection={this.props.onCollection} />
+              />
     )
   }
 
   renderCollection (primary_collection, index) {
-    let position = circularPositionFromIndex(index, boxSize)
+    let position = circularPositionFromIndex(index, collectionBoxSize)
     let collection = primary_collection['primary_object']
+    if (this.props.artObjectIndex !== index && this.props.showAllCollections === false) {
+      collectionBoxSize = 0
+
+    } else {
+      collectionBoxSize = 1
+    }
 
     return (
-      <ArtObject key={index} id={collection.id} name={collection.title} photoUrl={collection.vr_url}
-              width={boxSize} height={boxSize} depth={boxSize}
+      <CollectionArtObject key={index} artObjectIndex={index} id={collection.id} name={collection.title} photoUrl={collection.vr_url}
+              width={collectionBoxSize} height={collectionBoxSize} depth={collectionBoxSize}
               position={position}
               index={index}
               vrMode={this.props.vrMode}
-              onCollection={this.props.onCollection} />
+              onCollection={this.props.onCollection}
+              />
     )
   }
 }
