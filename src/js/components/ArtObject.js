@@ -11,10 +11,12 @@ class ArtObject extends Component {
       const color = ""
 
       return (
-        <Entity geometry={{'primitive': 'box', width: width, height: height, depth: depth}}
-                material={{src: `url(${photoUrl})`, color}}
-                position={`${x} ${y} ${z}`}
-                />
+        <Entity 
+        geometry={{'primitive': 'box', width: width, height: height, depth: depth}}
+        material={{src: `url(${photoUrl})`, color}}
+        position={`${x} ${y} ${z}`}
+        onClick={this.props.onArtObject.bind(null, this.props.index)}
+        />
       )
 
     } else {
