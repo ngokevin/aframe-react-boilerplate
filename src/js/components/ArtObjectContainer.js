@@ -12,17 +12,23 @@ let artBoxSize = .75
 
 class ArtObjectContainer extends Component {
   render () {
-    
-    const artObjects = collections[this.props.artObjectIndex]['art_objects']
-    const collectionArray = collections
+    console.log(this.props.vrCollections[0], '*********');
+    let artObjects;
+    if (this.props.vrCollections[this.props.artObjectIndex] !== undefined) {
+      artObjects = this.props.vrCollections[this.props.artObjectIndex]['art_objects']
+
+    } else {
+      artObjects = [];
+    }
+    let collectionArray = this.props.vrCollections
 
     // console.log(artObjects)
     if (this.props.vrMode) {
       return (
-        <Entity> 
+        <Entity>
           {collectionArray.map(this.renderCollection.bind(this))}
 
-          { 
+          {
             this.props.artCollectionView ? artObjects.map(this.renderArtObjects.bind(this)) : ""
           }
         </Entity>
@@ -49,11 +55,11 @@ class ArtObjectContainer extends Component {
     }
 
     return (
-      <ArtObject key={index} id={c.id} 
-        name={c.title} 
+      <ArtObject key={index} id={c.id}
+        name={c.title}
         photoUrl={c.vr_url}
-        width={artBoxSize} 
-        height={artBoxSize} 
+        width={artBoxSize}
+        height={artBoxSize}
         depth={artBoxSize}
         position={position}
         index={index}
@@ -74,12 +80,12 @@ class ArtObjectContainer extends Component {
     }
 
     return (
-      <CollectionArtObject key={index} artObjectIndex={index} 
-        id={collection.id} 
-        name={collection.title} 
+      <CollectionArtObject key={index} artObjectIndex={index}
+        id={collection.id}
+        name={collection.title}
         photoUrl={collection.vr_url}
-        width={collectionBoxSize} 
-        height={collectionBoxSize} 
+        width={collectionBoxSize}
+        height={collectionBoxSize}
         depth={collectionBoxSize}
         position={position}
         index={index}

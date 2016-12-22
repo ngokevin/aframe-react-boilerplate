@@ -98769,7 +98769,7 @@
 
 	var _ArtObjectContainer2 = _interopRequireDefault(_ArtObjectContainer);
 
-	var _Navigation = __webpack_require__(494);
+	var _Navigation = __webpack_require__(495);
 
 	var _Navigation2 = _interopRequireDefault(_Navigation);
 
@@ -98781,7 +98781,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var imageArray = ['https://c2.staticflickr.com/2/1700/24413259604_410edeebde_b.jpg', 'http://i.imgur.com/niHC9wI.jpg', 'https://c2.staticflickr.com/8/7348/26737615540_da23843fe8_b.jpg', 'https://c1.staticflickr.com/9/8308/29687569852_97f82c0238_b.jpg', 'https://c2.staticflickr.com/8/7042/6979883093_04f7667241_b.jpg', 'https://c2.staticflickr.com/6/5554/30613859743_083e6e97a6_b.jpg', 'https://c2.staticflickr.com/8/7568/28735194290_c75d2b0bca_b.jpg', 'https://c2.staticflickr.com/2/1669/24141478864_d2c6635538_b.jpg', 'https://c2.staticflickr.com/2/1404/5115778927_4c89f683a1_b.jpg', 'https://c2.staticflickr.com/6/5346/30914508181_e97b577423_b.jpg'];
+	var imageArray = ['https://c2.staticflickr.com/2/1700/24413259604_410edeebde_b.jpg', 'http://i.imgur.com/niHC9wI.jpg', 'https://c2.staticflickr.com/8/7348/26737615540_da23843fe8_b.jpg', 'https://c1.staticflickr.com/9/8308/29687569852_97f82c0238_b.jpg', 'https://c2.staticflickr.com/8/7042/6979883093_04f7667241_b.jpg', 'https://c2.staticflickr.com/8/7568/28735194290_c75d2b0bca_b.jpg', 'https://c2.staticflickr.com/2/1669/24141478864_d2c6635538_b.jpg', 'https://c2.staticflickr.com/2/1404/5115778927_4c89f683a1_b.jpg', 'https://c2.staticflickr.com/6/5346/30914508181_e97b577423_b.jpg'];
 
 	var VRScene = function (_React$Component) {
 	  _inherits(VRScene, _React$Component);
@@ -98791,8 +98791,21 @@
 
 	    var _this = _possibleConstructorReturn(this, (VRScene.__proto__ || Object.getPrototypeOf(VRScene)).call(this, props));
 
-	    _this.state = { color: 'red', vrMode: false, assetIndex: 0, selectedImage: imageArray[0] };
+	    _this.state = {
+	      color: 'red',
+	      vrMode: false,
+	      assetIndex: 0,
+	      selectedImage: imageArray[0],
+	      artCollectionView: false,
+	      artObjectIndex: 0,
+	      showAllCollections: true,
+	      artOnly: false,
+	      currentArtObject: null
+	    };
 	    _this.changeVRMode = _this.changeVRMode.bind(_this);
+	    _this.onCollection = _this.onCollection.bind(_this);
+	    _this.onArtObject = _this.onArtObject.bind(_this);
+	    _this.goBack = _this.goBack.bind(_this);
 	    return _this;
 	  }
 
@@ -98816,6 +98829,36 @@
 	      this.setState({ vrMode: true });
 	    }
 	  }, {
+	    key: 'exitVRMode',
+	    value: function exitVRMode() {
+	      this.setState({ vrMode: false });
+	    }
+	  }, {
+	    key: 'onCollection',
+	    value: function onCollection(artObjectIndex) {
+	      this.setState({ artObjectIndex: artObjectIndex });
+	      if (this.state.artCollectionView == false) this.setState({
+	        artCollectionView: true,
+	        showAllCollections: false
+	      });else this.setState({
+	        artCollectionView: false,
+	        showAllCollections: true
+	      });
+	    }
+	  }, {
+	    key: 'onArtObject',
+	    value: function onArtObject(objectIndex) {
+	      console.log("art click", objectIndex);
+	      this.setState({
+	        artOnly: true,
+	        currentArtObject: objectIndex });
+	    }
+	  }, {
+	    key: 'goBack',
+	    value: function goBack() {
+	      console.log("back");
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      if (this.state.vrMode) {
@@ -98829,8 +98872,19 @@
 	            null,
 	            _react2.default.createElement(_Cursor2.default, { color: 'red' })
 	          ),
-	          _react2.default.createElement(_Navigation2.default, { forward: this.onNext.bind(this), back: this.onPrev.bind(this) }),
-	          _react2.default.createElement(_ArtObjectContainer2.default, { vrMode: this.state.vrMode })
+	          _react2.default.createElement(_Navigation2.default, {
+	            forward: this.onNext.bind(this),
+	            back: this.onPrev.bind(this),
+	            exit: this.exitVRMode.bind(this) }),
+	          _react2.default.createElement(_ArtObjectContainer2.default, {
+	            showAllCollections: this.state.showAllCollections,
+	            artObjectIndex: this.state.artObjectIndex,
+	            vrMode: this.state.vrMode,
+	            artCollectionView: this.state.artCollectionView,
+	            artOnly: this.state.artOnly,
+	            onCollection: this.onCollection,
+	            onArtObject: this.onArtObject,
+	            currentArtObject: this.state.currentArtObject })
 	        );
 	      } else {
 	        return _react2.default.createElement(
@@ -98875,7 +98929,7 @@
 	  return _react2.default.createElement(
 	    _aframeReact.Entity,
 	    null,
-	    _react2.default.createElement(_aframeReact.Entity, _extends({ camera: '', 'look-controls': '', 'wasd-controls': '' }, props))
+	    _react2.default.createElement(_aframeReact.Entity, _extends({ position: '0 0 1', rotation: '0 180 0', camera: '', 'look-controls': '', 'wasd-controls': '' }, props))
 	  );
 	};
 
@@ -98961,7 +99015,6 @@
 	}(_react2.default.Component);
 
 	exports.default = Sky;
-	// const currentImage = imageArray(imageIndex)
 
 /***/ },
 /* 489 */
@@ -99029,6 +99082,10 @@
 
 	var _Sky2 = _interopRequireDefault(_Sky);
 
+	var _CollectionArtObject = __webpack_require__(494);
+
+	var _CollectionArtObject2 = _interopRequireDefault(_CollectionArtObject);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -99038,7 +99095,8 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	// const styles = require('../../scss/Members.scss')
-	var boxSize = 1;
+	var collectionBoxSize = 1;
+	var artBoxSize = .75;
 
 	var ArtObjectContainer = function (_Component) {
 	  _inherits(ArtObjectContainer, _Component);
@@ -99052,13 +99110,17 @@
 	  _createClass(ArtObjectContainer, [{
 	    key: 'render',
 	    value: function render() {
-	      var artObjects = _collections2.default[0]['art_objects'].slice(0, 6);
-	      console.log(artObjects);
+
+	      var artObjects = _collections2.default[this.props.artObjectIndex]['art_objects'];
+	      var collectionArray = _collections2.default;
+
+	      // console.log(artObjects)
 	      if (this.props.vrMode) {
 	        return _react2.default.createElement(
 	          _aframeReact.Entity,
 	          null,
-	          artObjects.map(this.renderCollection.bind(this))
+	          collectionArray.map(this.renderCollection.bind(this)),
+	          this.props.artCollectionView ? artObjects.map(this.renderArtObjects.bind(this)) : ""
 	        );
 	      } else {
 	        return _react2.default.createElement(
@@ -99069,15 +99131,54 @@
 	      }
 	    }
 	  }, {
-	    key: 'renderCollection',
-	    value: function renderCollection(collection, index) {
-	      var position = (0, _calculations.circularPositionFromIndex)(index, boxSize);
+	    key: 'renderArtObjects',
+	    value: function renderArtObjects(c, index) {
+	      var position = (0, _calculations.circularPositionFromIndex)(index, artBoxSize);
+	      console.log(position);
 
-	      return _react2.default.createElement(_ArtObject2.default, { key: index, id: collection.id, name: collection.title, photoUrl: collection.image_url,
-	        width: boxSize, height: boxSize, depth: boxSize,
+	      if (index === this.props.currentArtObject) {
+	        position = { x: 0, y: 0, z: 2.3 };
+	        // artBoxSize = 3
+	      } else {
+	        var _position = (0, _calculations.circularPositionFromIndex)(index, artBoxSize);
+	        // artBoxSize = .75
+	      }
+
+	      return _react2.default.createElement(_ArtObject2.default, { key: index, id: c.id,
+	        name: c.title,
+	        photoUrl: c.vr_url,
+	        width: artBoxSize,
+	        height: artBoxSize,
+	        depth: artBoxSize,
 	        position: position,
 	        index: index,
-	        vrMode: this.props.vrMode });
+	        vrMode: this.props.vrMode,
+	        onArtObject: this.props.onArtObject
+	      });
+	    }
+	  }, {
+	    key: 'renderCollection',
+	    value: function renderCollection(primary_collection, index) {
+	      var position = (0, _calculations.circularPositionFromIndex)(index, collectionBoxSize);
+	      var collection = primary_collection['primary_object'];
+	      if (this.props.artObjectIndex !== index && this.props.showAllCollections === false) {
+	        collectionBoxSize = 0;
+	      } else {
+	        collectionBoxSize = 1;
+	      }
+
+	      return _react2.default.createElement(_CollectionArtObject2.default, { key: index, artObjectIndex: index,
+	        id: collection.id,
+	        name: collection.title,
+	        photoUrl: collection.vr_url,
+	        width: collectionBoxSize,
+	        height: collectionBoxSize,
+	        depth: collectionBoxSize,
+	        position: position,
+	        index: index,
+	        vrMode: this.props.vrMode,
+	        onCollection: this.props.onCollection
+	      });
 	    }
 	  }]);
 
@@ -99144,9 +99245,12 @@
 
 	        var color = "";
 
-	        return _react2.default.createElement(_aframeReact.Entity, { geometry: { 'primitive': 'box', width: width, height: height, depth: depth },
+	        return _react2.default.createElement(_aframeReact.Entity, {
+	          geometry: { 'primitive': 'box', width: width, height: height, depth: depth },
 	          material: { src: 'url(' + photoUrl + ')', color: color },
-	          position: x + ' ' + y + ' ' + z });
+	          position: x + ' ' + y + ' ' + z,
+	          onClick: this.props.onArtObject.bind(null, this.props.index)
+	        });
 	      } else {
 
 	        return _react2.default.createElement(
@@ -99175,7 +99279,7 @@
 	  value: true
 	});
 	exports.circularPositionFromIndex = circularPositionFromIndex;
-	var radius = 2;
+	var radius = 4;
 	var diameter = radius * 2;
 	var circumference = diameter * Math.PI;
 
@@ -99204,472 +99308,634 @@
 	  value: true
 	});
 	var collections = [{
-	  "title": "Architecto minima aut autem beatae et.",
-	  "description": "Perferendis consequuntur ut earum ut alias. Enim asperiores est nobis. Rerum voluptates aut dicta incidunt.",
+	  "title": "Voluptas harum praesentium necessitatibus animi libero a.",
+	  "description": "Libero qui similique repellat soluta. Quasi consectetur et. Ut ea omnis et sed repellat. Ut ipsam fugiat occaecati.",
 	  "primary_object": {
-	    "id": 3,
-	    "museum_id": 1,
-	    "medium_id": 2,
-	    "title": "Black-Ground Fresco Fragment with Landscape in Tondo",
-	    "date": "50 - 79",
+	    "id": 705,
+	    "museum_id": 3,
+	    "medium_id": 61,
+	    "title": "Fragment of a Fresco Panel with a Meal Preparation",
+	    "date": "100 - 150",
 	    "artist": "Unknown",
 	    "description": null,
-	    "dimensions": "40.3 x 56.5 x 4.4 cm (15 7/8 x 22 1/4 x 1 3/4 in.)",
-	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00802701.jpg",
-	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00802701.jpg",
+	    "dimensions": "69.5 x 127 x 3.5 cm (27 3/8 x 50 x 1 3/8 in.)",
+	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00988701.jpg",
+	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00988701.jpg",
 	    "place": "Italy",
-	    "link_to_object": "http://www.getty.edu/art/collection/objects/6936/unknown-maker-black-ground-fresco-fragment-with-landscape-in-tondo-roman-50-79/",
+	    "link_to_object": "http://www.getty.edu/art/collection/objects/8611/unknown-maker-fragment-of-a-fresco-panel-with-a-meal-preparation-roman-100-150/",
 	    "credit_line": null,
-	    "created_at": "2016-12-18T19:35:24.099Z",
-	    "updated_at": "2016-12-18T19:35:24.099Z"
+	    "created_at": "2016-12-21T23:57:08.742Z",
+	    "updated_at": "2016-12-21T23:57:08.742Z",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364628/kgzeryhgs3whasldaqgt.jpg"
 	  },
-	  "id": 1,
+	  "id": 32,
 	  "art_objects": [{
-	    "id": 3,
-	    "title": "Black-Ground Fresco Fragment with Landscape in Tondo",
-	    "description": null,
-	    "image_url": "https://res.cloudinary.com/derwsphzd/image/upload/v1482351162/00050301_xzlrnm.jpg",
-	    "thumbnail_url": "https://s3-us-west-2.amazonaws.com/vr-museum-art-objects/artobject1.jpg",
-	    "museum": {
-	      "id": 1,
-	      "name": "J. Paul Getty Museum",
-	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
-	      "url": "https://www.getty.edu/museum/",
-	      "created_at": "2016-12-18T19:35:23.959Z",
-	      "updated_at": "2016-12-18T19:35:23.959Z"
-	    },
-	    "medium": {
-	      "id": 2,
-	      "medium_type": "Fresco",
-	      "created_at": "2016-12-18T19:35:24.077Z",
-	      "updated_at": "2016-12-18T19:35:24.077Z"
-	    }
-	  }, {
-	    "id": 154,
+	    "id": 705,
 	    "title": "Fragment of a Fresco Panel with a Meal Preparation",
 	    "description": null,
-	    "image_url": "https://res.cloudinary.com/derwsphzd/image/upload/v1482351162/00050301_xzlrnm.jpg",
+	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00988701.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00988701.jpg",
 	    "museum": {
-	      "id": 1,
+	      "id": 3,
 	      "name": "J. Paul Getty Museum",
 	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
 	      "url": "https://www.getty.edu/museum/",
-	      "created_at": "2016-12-18T19:35:23.959Z",
-	      "updated_at": "2016-12-18T19:35:23.959Z"
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
 	    },
 	    "medium": {
-	      "id": 2,
+	      "id": 61,
 	      "medium_type": "Fresco",
-	      "created_at": "2016-12-18T19:35:24.077Z",
-	      "updated_at": "2016-12-18T19:35:24.077Z"
-	    }
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Italy",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364628/kgzeryhgs3whasldaqgt.jpg"
 	  }, {
-	    "id": 155,
+	    "id": 706,
 	    "title": "Fragment of a Fresco with Nike",
 	    "description": null,
-	    "image_url": "https://res.cloudinary.com/derwsphzd/image/upload/v1482351162/00050301_xzlrnm.jpg",
+	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00766301.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00766301.jpg",
 	    "museum": {
-	      "id": 1,
+	      "id": 3,
 	      "name": "J. Paul Getty Museum",
 	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
 	      "url": "https://www.getty.edu/museum/",
-	      "created_at": "2016-12-18T19:35:23.959Z",
-	      "updated_at": "2016-12-18T19:35:23.959Z"
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
 	    },
 	    "medium": {
-	      "id": 2,
+	      "id": 61,
 	      "medium_type": "Fresco",
-	      "created_at": "2016-12-18T19:35:24.077Z",
-	      "updated_at": "2016-12-18T19:35:24.077Z"
-	    }
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Campania, South Italy",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364629/xinpvxqnyanz3tnf8o3d.jpg"
 	  }, {
-	    "id": 156,
+	    "id": 707,
 	    "title": "Fragment of a Yellow Fresco Panel with Muse",
 	    "description": null,
-	    "image_url": "https://res.cloudinary.com/derwsphzd/image/upload/v1482351162/00050301_xzlrnm.jpg",
+	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00762501.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00762501.jpg",
 	    "museum": {
-	      "id": 1,
+	      "id": 3,
 	      "name": "J. Paul Getty Museum",
 	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
 	      "url": "https://www.getty.edu/museum/",
-	      "created_at": "2016-12-18T19:35:23.959Z",
-	      "updated_at": "2016-12-18T19:35:23.959Z"
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
 	    },
 	    "medium": {
-	      "id": 2,
+	      "id": 61,
 	      "medium_type": "Fresco",
-	      "created_at": "2016-12-18T19:35:24.077Z",
-	      "updated_at": "2016-12-18T19:35:24.077Z"
-	    }
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Italy",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364630/dkpp8dbg7pofd9pqmonl.jpg"
 	  }, {
-	    "id": 157,
+	    "id": 708,
 	    "title": "Fresco Depicting a Woman (Maenad?) Holding a Dish; Peacock and Fruit Below",
 	    "description": null,
-	    "image_url": "https://res.cloudinary.com/derwsphzd/image/upload/v1482351162/00050301_xzlrnm.jpg",
+	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/02039801.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/02039801.jpg",
 	    "museum": {
-	      "id": 1,
+	      "id": 3,
 	      "name": "J. Paul Getty Museum",
 	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
 	      "url": "https://www.getty.edu/museum/",
-	      "created_at": "2016-12-18T19:35:23.959Z",
-	      "updated_at": "2016-12-18T19:35:23.959Z"
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
 	    },
 	    "medium": {
-	      "id": 2,
+	      "id": 61,
 	      "medium_type": "Fresco",
-	      "created_at": "2016-12-18T19:35:24.077Z",
-	      "updated_at": "2016-12-18T19:35:24.077Z"
-	    }
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Roman Empire",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364630/b882uooezrrv9kini0uh.jpg"
 	  }, {
-	    "id": 160,
+	    "id": 711,
 	    "title": "Fresco Fragment",
 	    "description": null,
-	    "image_url": "https://res.cloudinary.com/derwsphzd/image/upload/v1482351162/00050301_xzlrnm.jpg",
+	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00818801.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00818801.jpg",
 	    "museum": {
-	      "id": 1,
+	      "id": 3,
 	      "name": "J. Paul Getty Museum",
 	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
 	      "url": "https://www.getty.edu/museum/",
-	      "created_at": "2016-12-18T19:35:23.959Z",
-	      "updated_at": "2016-12-18T19:35:23.959Z"
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
 	    },
 	    "medium": {
-	      "id": 2,
+	      "id": 61,
 	      "medium_type": "Fresco",
-	      "created_at": "2016-12-18T19:35:24.077Z",
-	      "updated_at": "2016-12-18T19:35:24.077Z"
-	    }
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Italy",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364633/dtkck8zmbdcdkmb3oiyj.jpg"
 	  }, {
-	    "id": 161,
+	    "id": 712,
 	    "title": "Fresco Fragment",
 	    "description": null,
-	    "image_url": "https://res.cloudinary.com/derwsphzd/image/upload/v1482351162/00050301_xzlrnm.jpg",
+	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00819101.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00819101.jpg",
 	    "museum": {
-	      "id": 1,
+	      "id": 3,
 	      "name": "J. Paul Getty Museum",
 	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
 	      "url": "https://www.getty.edu/museum/",
-	      "created_at": "2016-12-18T19:35:23.959Z",
-	      "updated_at": "2016-12-18T19:35:23.959Z"
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
 	    },
 	    "medium": {
-	      "id": 2,
+	      "id": 61,
 	      "medium_type": "Fresco",
-	      "created_at": "2016-12-18T19:35:24.077Z",
-	      "updated_at": "2016-12-18T19:35:24.077Z"
-	    }
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Italy",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364634/ou95yuxj8fufvx3b0sa7.jpg"
 	  }, {
-	    "id": 162,
+	    "id": 713,
 	    "title": "Fresco fragment",
 	    "description": null,
 	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/01529301.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/01529301.jpg",
 	    "museum": {
-	      "id": 1,
+	      "id": 3,
 	      "name": "J. Paul Getty Museum",
 	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
 	      "url": "https://www.getty.edu/museum/",
-	      "created_at": "2016-12-18T19:35:23.959Z",
-	      "updated_at": "2016-12-18T19:35:23.959Z"
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
 	    },
 	    "medium": {
-	      "id": 2,
+	      "id": 61,
 	      "medium_type": "Fresco",
-	      "created_at": "2016-12-18T19:35:24.077Z",
-	      "updated_at": "2016-12-18T19:35:24.077Z"
-	    }
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Italy",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364634/gq2n4wv8nazufbirqmns.jpg"
 	  }, {
-	    "id": 163,
+	    "id": 714,
 	    "title": "Fresco fragment",
 	    "description": null,
 	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/01529401.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/01529401.jpg",
 	    "museum": {
-	      "id": 1,
+	      "id": 3,
 	      "name": "J. Paul Getty Museum",
 	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
 	      "url": "https://www.getty.edu/museum/",
-	      "created_at": "2016-12-18T19:35:23.959Z",
-	      "updated_at": "2016-12-18T19:35:23.959Z"
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
 	    },
 	    "medium": {
-	      "id": 2,
+	      "id": 61,
 	      "medium_type": "Fresco",
-	      "created_at": "2016-12-18T19:35:24.077Z",
-	      "updated_at": "2016-12-18T19:35:24.077Z"
-	    }
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Italy",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364635/uerwk5hqzjuedwwvqcss.jpg"
 	  }, {
-	    "id": 164,
+	    "id": 715,
 	    "title": "Fresco Fragment with Cupids and Psyche Making Perfume",
 	    "description": null,
 	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00802401.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00802401.jpg",
 	    "museum": {
-	      "id": 1,
+	      "id": 3,
 	      "name": "J. Paul Getty Museum",
 	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
 	      "url": "https://www.getty.edu/museum/",
-	      "created_at": "2016-12-18T19:35:23.959Z",
-	      "updated_at": "2016-12-18T19:35:23.959Z"
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
 	    },
 	    "medium": {
-	      "id": 2,
+	      "id": 61,
 	      "medium_type": "Fresco",
-	      "created_at": "2016-12-18T19:35:24.077Z",
-	      "updated_at": "2016-12-18T19:35:24.077Z"
-	    }
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Italy",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364636/tlo56cn7losyebipkuyl.jpg"
 	  }, {
-	    "id": 165,
+	    "id": 716,
 	    "title": "Fresco Fragment with Herakles and Hesione",
 	    "description": null,
 	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00802601.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00802601.jpg",
 	    "museum": {
-	      "id": 1,
+	      "id": 3,
 	      "name": "J. Paul Getty Museum",
 	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
 	      "url": "https://www.getty.edu/museum/",
-	      "created_at": "2016-12-18T19:35:23.959Z",
-	      "updated_at": "2016-12-18T19:35:23.959Z"
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
 	    },
 	    "medium": {
-	      "id": 2,
+	      "id": 61,
 	      "medium_type": "Fresco",
-	      "created_at": "2016-12-18T19:35:24.077Z",
-	      "updated_at": "2016-12-18T19:35:24.077Z"
-	    }
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Italy",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364636/wsh9zxkvq2c8yq3lslgw.jpg"
 	  }, {
-	    "id": 167,
+	    "id": 718,
 	    "title": "Fresco Fragment:  Woman on a Balcony",
 	    "description": null,
 	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/03544601.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/03544601.jpg",
 	    "museum": {
-	      "id": 1,
+	      "id": 3,
 	      "name": "J. Paul Getty Museum",
 	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
 	      "url": "https://www.getty.edu/museum/",
-	      "created_at": "2016-12-18T19:35:23.959Z",
-	      "updated_at": "2016-12-18T19:35:23.959Z"
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
 	    },
 	    "medium": {
-	      "id": 2,
+	      "id": 61,
 	      "medium_type": "Fresco",
-	      "created_at": "2016-12-18T19:35:24.077Z",
-	      "updated_at": "2016-12-18T19:35:24.077Z"
-	    }
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Italy",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364638/lr1zxn7fpbp1ps2lazc2.jpg"
 	  }, {
-	    "id": 168,
+	    "id": 719,
 	    "title": "Fresco Panel Depicting Dionysos and Ariadne",
 	    "description": null,
 	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/02031501.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/02031501.jpg",
 	    "museum": {
-	      "id": 1,
+	      "id": 3,
 	      "name": "J. Paul Getty Museum",
 	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
 	      "url": "https://www.getty.edu/museum/",
-	      "created_at": "2016-12-18T19:35:23.959Z",
-	      "updated_at": "2016-12-18T19:35:23.959Z"
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
 	    },
 	    "medium": {
-	      "id": 2,
+	      "id": 61,
 	      "medium_type": "Fresco",
-	      "created_at": "2016-12-18T19:35:24.077Z",
-	      "updated_at": "2016-12-18T19:35:24.077Z"
-	    }
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Roman Empire",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364639/kyevsuqmhs1tfslq0jdf.jpg"
 	  }, {
-	    "id": 169,
+	    "id": 720,
 	    "title": "Fresco Panel with Two Warriors",
 	    "description": null,
 	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00847501.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00847501.jpg",
 	    "museum": {
-	      "id": 1,
+	      "id": 3,
 	      "name": "J. Paul Getty Museum",
 	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
 	      "url": "https://www.getty.edu/museum/",
-	      "created_at": "2016-12-18T19:35:23.959Z",
-	      "updated_at": "2016-12-18T19:35:23.959Z"
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
 	    },
 	    "medium": {
-	      "id": 2,
+	      "id": 61,
 	      "medium_type": "Fresco",
-	      "created_at": "2016-12-18T19:35:24.077Z",
-	      "updated_at": "2016-12-18T19:35:24.077Z"
-	    }
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Paestum, South Italy",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364640/xxj0oekgg4mmdyuqjaj1.jpg"
 	  }, {
-	    "id": 443,
+	    "id": 994,
 	    "title": "Wall Fragment with a Peacock",
 	    "description": null,
 	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00760901.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00760901.jpg",
 	    "museum": {
-	      "id": 1,
+	      "id": 3,
 	      "name": "J. Paul Getty Museum",
 	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
 	      "url": "https://www.getty.edu/museum/",
-	      "created_at": "2016-12-18T19:35:23.959Z",
-	      "updated_at": "2016-12-18T19:35:23.959Z"
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
 	    },
 	    "medium": {
-	      "id": 2,
+	      "id": 61,
 	      "medium_type": "Fresco",
-	      "created_at": "2016-12-18T19:35:24.077Z",
-	      "updated_at": "2016-12-18T19:35:24.077Z"
-	    }
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Roman Empire",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364864/jgsfsposq5gbvcpcgz8n.jpg"
 	  }, {
-	    "id": 444,
+	    "id": 995,
 	    "title": "Wall Fragment with Architectural Motifs on Black Ground",
 	    "description": null,
 	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00801701.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00801701.jpg",
 	    "museum": {
-	      "id": 1,
+	      "id": 3,
 	      "name": "J. Paul Getty Museum",
 	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
 	      "url": "https://www.getty.edu/museum/",
-	      "created_at": "2016-12-18T19:35:23.959Z",
-	      "updated_at": "2016-12-18T19:35:23.959Z"
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
 	    },
 	    "medium": {
-	      "id": 2,
+	      "id": 61,
 	      "medium_type": "Fresco",
-	      "created_at": "2016-12-18T19:35:24.077Z",
-	      "updated_at": "2016-12-18T19:35:24.077Z"
-	    }
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Boscoreale, Italy",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364866/zmf4byqmiiobavh6stww.jpg"
 	  }, {
-	    "id": 445,
+	    "id": 996,
 	    "title": "Wall Fragment with Bull's Head and Winged Sea Monsters on Black Ground",
 	    "description": null,
 	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00801301.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00801301.jpg",
 	    "museum": {
-	      "id": 1,
+	      "id": 3,
 	      "name": "J. Paul Getty Museum",
 	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
 	      "url": "https://www.getty.edu/museum/",
-	      "created_at": "2016-12-18T19:35:23.959Z",
-	      "updated_at": "2016-12-18T19:35:23.959Z"
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
 	    },
 	    "medium": {
-	      "id": 2,
+	      "id": 61,
 	      "medium_type": "Fresco",
-	      "created_at": "2016-12-18T19:35:24.077Z",
-	      "updated_at": "2016-12-18T19:35:24.077Z"
-	    }
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Boscoreale, Italy",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364867/b7xtfyijdrxbgkef7cek.jpg"
 	  }, {
-	    "id": 446,
+	    "id": 997,
 	    "title": "Wall Fragment with Grotesques",
 	    "description": null,
 	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00801901.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00801901.jpg",
 	    "museum": {
-	      "id": 1,
+	      "id": 3,
 	      "name": "J. Paul Getty Museum",
 	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
 	      "url": "https://www.getty.edu/museum/",
-	      "created_at": "2016-12-18T19:35:23.959Z",
-	      "updated_at": "2016-12-18T19:35:23.959Z"
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
 	    },
 	    "medium": {
-	      "id": 2,
+	      "id": 61,
 	      "medium_type": "Fresco",
-	      "created_at": "2016-12-18T19:35:24.077Z",
-	      "updated_at": "2016-12-18T19:35:24.077Z"
-	    }
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Boscoreale, Italy",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364868/t9qdbbe7bepjurmunxuk.jpg"
 	  }, {
-	    "id": 447,
+	    "id": 998,
 	    "title": "Wall fragment with Siren, Sea Monsters and Niche on Black Ground",
 	    "description": null,
 	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00801401.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00801401.jpg",
 	    "museum": {
-	      "id": 1,
+	      "id": 3,
 	      "name": "J. Paul Getty Museum",
 	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
 	      "url": "https://www.getty.edu/museum/",
-	      "created_at": "2016-12-18T19:35:23.959Z",
-	      "updated_at": "2016-12-18T19:35:23.959Z"
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
 	    },
 	    "medium": {
-	      "id": 2,
+	      "id": 61,
 	      "medium_type": "Fresco",
-	      "created_at": "2016-12-18T19:35:24.077Z",
-	      "updated_at": "2016-12-18T19:35:24.077Z"
-	    }
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Boscoreale, Italy",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364869/ums1bsn0lxucwzwomg8e.jpg"
 	  }, {
-	    "id": 448,
+	    "id": 999,
 	    "title": "Wall Fragment with Two Women",
 	    "description": null,
 	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/11062301.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/11062301.jpg",
 	    "museum": {
-	      "id": 1,
+	      "id": 3,
 	      "name": "J. Paul Getty Museum",
 	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
 	      "url": "https://www.getty.edu/museum/",
-	      "created_at": "2016-12-18T19:35:23.959Z",
-	      "updated_at": "2016-12-18T19:35:23.959Z"
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
 	    },
 	    "medium": {
-	      "id": 2,
+	      "id": 61,
 	      "medium_type": "Fresco",
-	      "created_at": "2016-12-18T19:35:24.077Z",
-	      "updated_at": "2016-12-18T19:35:24.077Z"
-	    }
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Roman Empire",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364870/o8r0rngkslrw2cn4jaum.jpg"
 	  }, {
-	    "id": 449,
+	    "id": 1000,
 	    "title": "Wall  Fragment with Winged Female (Nike) on Black Ground",
 	    "description": null,
 	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00801001.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00801001.jpg",
 	    "museum": {
-	      "id": 1,
+	      "id": 3,
 	      "name": "J. Paul Getty Museum",
 	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
 	      "url": "https://www.getty.edu/museum/",
-	      "created_at": "2016-12-18T19:35:23.959Z",
-	      "updated_at": "2016-12-18T19:35:23.959Z"
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
 	    },
 	    "medium": {
-	      "id": 2,
+	      "id": 61,
 	      "medium_type": "Fresco",
-	      "created_at": "2016-12-18T19:35:24.077Z",
-	      "updated_at": "2016-12-18T19:35:24.077Z"
-	    }
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Boscoreale, Italy",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364870/byatjxg7thd24g5pghei.jpg"
 	  }, {
-	    "id": 450,
+	    "id": 1001,
 	    "title": "Wall Panel from a Black Ground Frescoed Room",
 	    "description": null,
 	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00762101.jpg",
 	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00762101.jpg",
 	    "museum": {
-	      "id": 1,
+	      "id": 3,
 	      "name": "J. Paul Getty Museum",
 	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
 	      "url": "https://www.getty.edu/museum/",
-	      "created_at": "2016-12-18T19:35:23.959Z",
-	      "updated_at": "2016-12-18T19:35:23.959Z"
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
 	    },
 	    "medium": {
-	      "id": 2,
+	      "id": 61,
 	      "medium_type": "Fresco",
-	      "created_at": "2016-12-18T19:35:24.077Z",
-	      "updated_at": "2016-12-18T19:35:24.077Z"
-	    }
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Boscoreale, Italy <br> Place Found: Boscoreale, Italy",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364871/ywjqrvqoq1anshizzscr.jpg"
+	  }, {
+	    "id": 554,
+	    "title": "Black-Ground Fresco Fragment with Landscape in Tondo",
+	    "description": null,
+	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00802701.jpg",
+	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00802701.jpg",
+	    "museum": {
+	      "id": 3,
+	      "name": "J. Paul Getty Museum",
+	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
+	      "url": "https://www.getty.edu/museum/",
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
+	    },
+	    "medium": {
+	      "id": 61,
+	      "medium_type": "Fresco",
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Italy",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364506/sm5cxtoymcvqgkibgb4u.jpg"
 	  }],
 	  "user": {
 	    "email": "pp@gmail.com",
 	    "username": "pp",
-	    "id": 1,
-	    "access_token": "1:LQoSSpV-euN8eLL2LiDH"
+	    "id": 24,
+	    "access_token": "24:H_Vc2PFnwZGu7n2ZUxVH"
+	  }
+	}, {
+	  "title": "Commodi tempora veniam laborum qui sint.",
+	  "description": "Sit exercitationem nostrum illum asperiores quasi. Reprehenderit modi laboriosam. Dolor sequi officia reiciendis qui est omnis quod. Officia sunt velit quibusdam id soluta tenetur. Labore reprehenderit maxime quam delectus.",
+	  "primary_object": {
+	    "id": 1098,
+	    "museum_id": 4,
+	    "medium_id": 118,
+	    "title": "Two toilet caskets",
+	    "date": "1685",
+	    "artist": "André-Charles Boulle",
+	    "description": "These caskets on stands probably served no practical purpose. They were made as works of art, to add lustre to a princely chamber. They are ornamented with marquetry of tortoiseshell and brass, supplemented\nwith some pewter. Boulle specialized in this technique, which is known as boullework. The shape of the fittings accords well with the patterns of the marquetry.",
+	    "dimensions": "h 138.3cm × w 91.4cm × d 65.8cm",
+	    "thumbnail_url": "http://lh6.ggpht.com/6j87OS2bJzn6LhHQBp1BAkHHdUIl-c49KZrWuk5w5Y3f-8H6k2XeD7gDb2MtYKIzZkgZpbmrlf9DYnYrRhOIeVYGdcg=s0",
+	    "image_url": "http://lh4.ggpht.com/hr2NvVMJ1_ER4X-LeyHDBOaKm4aorUB4HaXtrb8JoZwtqZb6xsCnvaBT9r4SQiKK5svwtR0JwQUcYjmqhw71Hx9wfc8=s0",
+	    "place": null,
+	    "link_to_object": "https://www.rijksmuseum.nl/en/collection/BK-2009-255-2",
+	    "credit_line": "",
+	    "created_at": "2016-12-22T00:02:59.691Z",
+	    "updated_at": "2016-12-22T00:02:59.691Z",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364979/ajcnfvennlpjvhzy8iss.jpg"
+	  },
+	  "id": 33,
+	  "art_objects": [{
+	    "id": 1001,
+	    "title": "Wall Panel from a Black Ground Frescoed Room",
+	    "description": null,
+	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00762101.jpg",
+	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00762101.jpg",
+	    "museum": {
+	      "id": 3,
+	      "name": "J. Paul Getty Museum",
+	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
+	      "url": "https://www.getty.edu/museum/",
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
+	    },
+	    "medium": {
+	      "id": 61,
+	      "medium_type": "Fresco",
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Boscoreale, Italy <br> Place Found: Boscoreale, Italy",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364871/ywjqrvqoq1anshizzscr.jpg"
+	  }, {
+	    "id": 1098,
+	    "title": "Two toilet caskets",
+	    "description": "These caskets on stands probably served no practical purpose. They were made as works of art, to add lustre to a princely chamber. They are ornamented with marquetry of tortoiseshell and brass, supplemented\nwith some pewter. Boulle specialized in this technique, which is known as boullework. The shape of the fittings accords well with the patterns of the marquetry.",
+	    "image_url": "http://lh4.ggpht.com/hr2NvVMJ1_ER4X-LeyHDBOaKm4aorUB4HaXtrb8JoZwtqZb6xsCnvaBT9r4SQiKK5svwtR0JwQUcYjmqhw71Hx9wfc8=s0",
+	    "thumbnail_url": "http://lh6.ggpht.com/6j87OS2bJzn6LhHQBp1BAkHHdUIl-c49KZrWuk5w5Y3f-8H6k2XeD7gDb2MtYKIzZkgZpbmrlf9DYnYrRhOIeVYGdcg=s0",
+	    "museum": {
+	      "id": 4,
+	      "name": "Rijksmuseum",
+	      "location": "Museumstraat 1, 1071 XX Amsterdam, Netherlands",
+	      "url": "https://www.rijksmuseum.nl/en",
+	      "created_at": "2016-12-22T00:01:12.794Z",
+	      "updated_at": "2016-12-22T00:01:12.794Z"
+	    },
+	    "medium": {
+	      "id": 118,
+	      "medium_type": "softwood",
+	      "created_at": "2016-12-22T00:02:59.283Z",
+	      "updated_at": "2016-12-22T00:02:59.283Z"
+	    },
+	    "place": null,
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364979/ajcnfvennlpjvhzy8iss.jpg"
+	  }, {
+	    "id": 997,
+	    "title": "Wall Fragment with Grotesques",
+	    "description": null,
+	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00801901.jpg",
+	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00801901.jpg",
+	    "museum": {
+	      "id": 3,
+	      "name": "J. Paul Getty Museum",
+	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
+	      "url": "https://www.getty.edu/museum/",
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
+	    },
+	    "medium": {
+	      "id": 61,
+	      "medium_type": "Fresco",
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Boscoreale, Italy",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364868/t9qdbbe7bepjurmunxuk.jpg"
+	  }, {
+	    "id": 998,
+	    "title": "Wall fragment with Siren, Sea Monsters and Niche on Black Ground",
+	    "description": null,
+	    "image_url": "http://www.getty.edu/museum/media/images/web/enlarge/00801401.jpg",
+	    "thumbnail_url": "http://www.getty.edu/museum/media/images/web/thumbnail/00801401.jpg",
+	    "museum": {
+	      "id": 3,
+	      "name": "J. Paul Getty Museum",
+	      "location": "1200 Getty Center Dr, Los Angeles, CA 90049",
+	      "url": "https://www.getty.edu/museum/",
+	      "created_at": "2016-12-21T23:55:04.172Z",
+	      "updated_at": "2016-12-21T23:55:04.172Z"
+	    },
+	    "medium": {
+	      "id": 61,
+	      "medium_type": "Fresco",
+	      "created_at": "2016-12-21T23:55:06.103Z",
+	      "updated_at": "2016-12-21T23:55:06.103Z"
+	    },
+	    "place": "Boscoreale, Italy",
+	    "vr_url": "http://res.cloudinary.com/derwsphzd/image/upload/v1482364869/ums1bsn0lxucwzwomg8e.jpg"
+	  }],
+	  "user": {
+	    "email": "pp@gmail.com",
+	    "username": "pp",
+	    "id": 24,
+	    "access_token": "24:H_Vc2PFnwZGu7n2ZUxVH"
 	  }
 	}];
 
@@ -99677,6 +99943,86 @@
 
 /***/ },
 /* 494 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(307);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _aframeReact = __webpack_require__(306);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var CollectionArtObject = function (_Component) {
+	  _inherits(CollectionArtObject, _Component);
+
+	  function CollectionArtObject() {
+	    _classCallCheck(this, CollectionArtObject);
+
+	    return _possibleConstructorReturn(this, (CollectionArtObject.__proto__ || Object.getPrototypeOf(CollectionArtObject)).apply(this, arguments));
+	  }
+
+	  _createClass(CollectionArtObject, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      var _props = this.props,
+	          id = _props.id,
+	          name = _props.name,
+	          photoUrl = _props.photoUrl;
+
+
+	      if (this.props.vrMode) {
+	        var _props2 = this.props,
+	            width = _props2.width,
+	            height = _props2.height,
+	            depth = _props2.depth;
+	        var _props$position = this.props.position,
+	            x = _props$position.x,
+	            y = _props$position.y,
+	            z = _props$position.z;
+
+	        var color = "";
+
+	        return _react2.default.createElement(_aframeReact.Entity, { geometry: { 'primitive': 'box', width: width, height: height, depth: depth },
+	          material: { src: 'url(' + photoUrl + ')', color: color },
+	          position: x + ' ' + y + ' ' + z,
+	          onClick: this.props.onCollection.bind(null, this.props.artObjectIndex) });
+	      } else {
+
+	        return _react2.default.createElement(
+	          'div',
+	          { onClick: function onClick() {
+	              _this2.props.onClick(id);
+	            }, title: name },
+	          _react2.default.createElement('img', { src: photoUrl, width: '100', height: '100' })
+	        );
+	      }
+	    }
+	  }]);
+
+	  return CollectionArtObject;
+	}(_react.Component);
+
+	exports.default = CollectionArtObject;
+
+/***/ },
+/* 495 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -99717,11 +100063,14 @@
 	        _aframeReact.Entity,
 	        { id: 'nav', position: '0 -1.8 0', rotation: '90 -90 0' },
 	        _react2.default.createElement(NavLink, { id: 'prev', onClick: this.props.back,
-	          opacity: 0.3, rotation: '0 0 0',
-	          text: 'prev', textPosition: '0 0.53 -0.1', textRotation: '0 180 -90' }),
+	          opacity: 0.2, rotation: '0 0 0',
+	          text: 'prev', textPosition: '0.3 0.45 -0.1', textRotation: '0 180 -90' }),
 	        _react2.default.createElement(NavLink, { id: 'next', onClick: this.props.forward,
-	          opacity: 0.5, rotation: '0 0 180',
-	          text: 'next', textPosition: '0 0.40 -0.1', textRotation: '0 180 90' })
+	          opacity: 0.4, rotation: '0 0 120',
+	          text: 'next', textPosition: '0.3 0.27 -0.1', textRotation: '0 180 90' }),
+	        _react2.default.createElement(NavLink, { id: 'exit', onClick: this.props.exit,
+	          opacity: 0.6, rotation: '0 0 -120',
+	          text: 'exit', textPosition: '0.25 0.4 0', textRotation: '0 180 -220' })
 	      );
 	    }
 	  }]);
@@ -99735,7 +100084,7 @@
 	    _aframeReact.Entity,
 	    { id: props.id,
 	      onClick: props.onClick,
-	      geometry: { arc: 180, primitive: 'torus', radius: 0.5, radiusTubular: 0.05, segmentsTubular: 60 },
+	      geometry: { arc: 120, primitive: 'torus', radius: 0.5, radiusTubular: 0.05, segmentsTubular: 60 },
 	      material: { color: '#FFF', opacity: props.opacity, shader: 'flat', transparent: true },
 	      rotation: props.rotation
 	    },
@@ -99749,15 +100098,6 @@
 	}
 
 	exports.default = Navigation;
-
-	// export default props => (
-	//   <Entity
-	//     geometry={{arc: 180, primitive: 'torus', radius: 0.5, radiusTubular: 0.05,
-	//                segmentsTubular: 60}}
-	//     material={{color: '#FFF', shader: 'flat', transparent: true}}
-	//     rotation="90,0,0"
-	//     position="0 -1.8 0"/>
-	// );
 
 /***/ }
 /******/ ]);

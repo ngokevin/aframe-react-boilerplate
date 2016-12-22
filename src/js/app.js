@@ -8,5 +8,18 @@ import ReactDOM from 'react-dom';
 
 import VRScene from './components/VRScene'
 
+// React Router
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
-ReactDOM.render(<VRScene/>, document.querySelector('.scene-container'));
+const router = (
+    <Router history={browserHistory}>
+      <Route path="/" component={ VRScene }>
+        {/* <IndexRoute component={ Home }></IndexRoute> */}
+        <Route path="/users/:userId/collections" component={ VRScene }></Route>
+      </Route>
+    </Router>
+);
+
+
+
+ReactDOM.render(router, document.querySelector('.scene-container'));
