@@ -12,6 +12,7 @@ import Sky from './Sky';
 import Cursor from './Cursor';
 import ArtObjectContainer from './ArtObjectContainer';
 import Navigation from './Navigation';
+// import BackButton from './BackButton';
 
 let imageArray = ['https://c2.staticflickr.com/2/1700/24413259604_410edeebde_b.jpg',
                     'http://i.imgur.com/niHC9wI.jpg',
@@ -31,6 +32,7 @@ class VRScene extends React.Component {
     this.state = {color: 'red', vrMode: false, assetIndex: 0, selectedImage: imageArray[0], artCollectionView: false};
     this.changeVRMode = this.changeVRMode.bind(this)
     this.onCollection = this.onCollection.bind(this)
+    this.goBack = this.goBack.bind(this)
   }
 
   onNext() {
@@ -50,7 +52,14 @@ class VRScene extends React.Component {
   }
 
   onCollection() {
-    this.setState({artCollectionView: true})
+    if (this.state.artCollectionView == false)
+      this.setState({artCollectionView: true})
+    else 
+      this.setState({artCollectionView: false})
+  }
+
+  goBack() {
+    console.log("back")
   }
 
   render () {
