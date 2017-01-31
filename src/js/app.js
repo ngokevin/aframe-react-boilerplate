@@ -26,6 +26,8 @@ class VRScene extends React.Component {
   render () {
     return (
       <Scene>
+        <a-assets></a-assets>
+
         <Camera>
           <a-cursor
             animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
