@@ -1,6 +1,6 @@
 import 'aframe';
 import 'aframe-animation-component';
-import 'aframe-text-component';
+import 'aframe-text-geometry-component';
 import 'babel-polyfill';
 import {Entity, Scene} from 'aframe-react';
 import React from 'react';
@@ -47,8 +47,8 @@ class VRScene extends React.Component {
         <Entity light={{type: 'directional', intensity: 1}} position='1 1 0'/>
 
         <Entity
-          animation__rot={{property: 'rotation', dur: 2000, loop: true, to: '360 360 360'}}
-          animation__sca={{property: 'scale', dir: 'alternate', dur: 100, loop: true, to: '1.1 1.1 1.1'}}
+          animation__rotate={{property: 'rotation', dur: 2000, loop: true, to: '360 360 360'}}
+          animation__scale={{property: 'scale', dir: 'alternate', dur: 100, loop: true, to: '1.1 1.1 1.1'}}
           geometry='primitive: box'
           material={{color: this.state.color, opacity: 0.6}}
           position='0 -0.5 -3'
