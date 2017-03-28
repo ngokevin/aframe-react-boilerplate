@@ -5,16 +5,19 @@
   "dependencies": {
     "aframe": "^0.5.0",
     "aframe-animation-component": "^3.2.5",
-    "aframe-react": "^3.5.0",
-    "aframe-text-geometry-component": "^0.5.1",
+    "aframe-particle-system-component": "^1.0.8",
+    "aframe-react": "^4.0.x",
     "babel-polyfill": "^6.3.14",
-    "lodash": "^4.17.2",
     "react": "^15.4.1",
-    "react-dom": "^15.4.1"
+    "react-dom": "^15.4.1",
+    "react-scripts": "0.9.5"
   },
   "scripts": {
-    "build": "webpack",
-    "serve": "webpack-dev-server --content-base src --progress --watch --history-api-fallback --inline --hot --host 0.0.0.0 --port 9090"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "publish": "npm run build && gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -38,17 +41,6 @@
   },
   "homepage": "https://github.com/ngokevin/aframe-react-boilerplate#readme",
   "devDependencies": {
-    "babel": "^6.3.13",
-    "babel-core": "^6.3.15",
-    "babel-loader": "^6.2.0",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13",
-    "babel-preset-stage-0": "^6.3.13",
-    "babel-runtime": "^6.3.13",
-    "css-loader": "^0.23.0",
-    "json-loader": "^0.5.4",
-    "style-loader": "^0.13.0",
-    "webpack": "^1.12.9",
-    "webpack-dev-server": "^1.14.0"
+    "gh-pages": "^0.12.0"
   }
 }

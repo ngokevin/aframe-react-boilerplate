@@ -2,3 +2,4 @@ node_modules/
 npm-debug.log
 *.sw[ponm]
 gh-pages
+build
