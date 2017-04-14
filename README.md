@@ -12,7 +12,7 @@ To get started:
 
 ```bash
 npm install
-npm run start
+npm start
 ```
 
 To publish to GitHub Pages:
