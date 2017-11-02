@@ -3,14 +3,14 @@
   "version": "3.0.1",
   "description": "Boilerplate for building virtual reality experiences with A-Frame and React.",
   "dependencies": {
-    "aframe": "^0.5.0",
+    "aframe": "^0.7.1",
     "aframe-animation-component": "^3.2.5",
-    "aframe-particle-system-component": "^1.0.8",
-    "aframe-react": "^4.0.x",
+    "aframe-particle-system-component": "^1.0.10",
+    "aframe-react": "^4.3.0",
     "babel-polyfill": "^6.3.14",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
-    "react-scripts": "0.9.5"
+    "react-scripts": "^1.0.16"
   },
   "scripts": {
     "start": "react-scripts start",
