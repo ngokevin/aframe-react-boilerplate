@@ -39,7 +39,6 @@
   "bugs": {
     "url": "https://github.com/ngokevin/aframe-react-boilerplate/issues"
   },
-  "homepage": "https://github.com/ngokevin/aframe-react-boilerplate#readme",
   "devDependencies": {
     "gh-pages": "^0.12.0"
   }
