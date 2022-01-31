@@ -1,0 +1,18 @@
+.button-one {
+  border-radius: 99rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  box-shadow: 0px 2px 2px rgba(255, 255, 255, 0.08);
+  /* border-color: rgba(104, 116, 185, 1); */
+  color: white;
+  border-style: double;
+  font-weight: 650;
+  background-color: rgba(255, 255, 255, 0.08);
+  /* border-color: rgba(187, 134, 252, 1);*/
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 880px) {
+  .button-one {
+    font-size: small;
+  }
+}
